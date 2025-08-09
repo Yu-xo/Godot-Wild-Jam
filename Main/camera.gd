@@ -4,7 +4,7 @@ extends Node3D
 @export var sway_speed: float = 5.0 
 @export var sway_limit: float = 0.1
 @onready var phantom_camera_host = $Camera3D/PhantomCameraHost
-@onready var game_view_cam = $"../GameViewCam"
+@onready var game_view_cam = $"../GameCamMount/GameViewCam"
 
 var target_offset := Vector3.ZERO
 var default_position := Vector3.ZERO

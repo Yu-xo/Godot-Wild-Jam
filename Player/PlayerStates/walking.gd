@@ -30,10 +30,18 @@ func Update(delta):
 	var input_strength = input_vector.length()
 	if input_strength > 0.1:
 		var input_dir = input_vector.normalized()
-		var move_dir = Vector3(input_dir.x, 0.0, input_dir.y)
+		var cam_basis = get_tree().get_first_node_in_group("gamecam").global_transform.basis
+		var forward = cam_basis.z
+		var right = cam_basis.x
+		forward.y = 0
+		right.y = 0
+		forward = forward.normalized()
+		right = right.normalized()
+		var move_dir = (right * input_dir.x + forward * input_dir.y).normalized()
 		target_rotation = atan2(move_dir.x, move_dir.z)
 		player.velocity.x = lerp(player.velocity.x, move_dir.x * player.speed, delta * 10.0)
 		player.velocity.z = lerp(player.velocity.z, move_dir.z * player.speed, delta * 10.0)
+		
 		step_timer -= delta
 		if step_timer <= 0.0:
 			var random_sound = walk_sounds[randi() % walk_sounds.size()]
