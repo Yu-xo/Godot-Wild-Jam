@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://wuncigv354tw"]
+
+[ext_resource type="Script" uid="uid://b7d4eviin78l3" path="res://Enemies/test/test_enemy.gd" id="1_2i4cl"]
+[ext_resource type="Script" uid="uid://yqvr0idmn0b" path="res://StateMachine/state_machine.gd" id="2_r1wum"]
+[ext_resource type="Script" uid="uid://b46nbayt85so6" path="res://Enemies/test/goto_base.gd" id="3_8c6v1"]
+[ext_resource type="Script" uid="uid://dj0sykcxfdm45" path="res://Enemies/test/attack.gd" id="4_526c8"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mu4ye"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_x2dkn"]
+radius = 0.51123
+
+[node name="TestEnemy" type="CharacterBody3D"]
+script = ExtResource("1_2i4cl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_mu4ye")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_x2dkn")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "object")]
+script = ExtResource("2_r1wum")
+initial_state = NodePath("GotoBase")
+object = NodePath("..")
+
+[node name="GotoBase" type="Node" parent="StateMachine"]
+script = ExtResource("3_8c6v1")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("4_526c8")
+
+[node name="AttackTimer" type="Timer" parent="StateMachine/Attack"]
+wait_time = 5.0
+
+[connection signal="timeout" from="StateMachine/Attack/AttackTimer" to="StateMachine/Attack" method="_on_attack_timer_timeout"]

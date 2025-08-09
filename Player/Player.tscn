@@ -11,8 +11,8 @@
 height = 1.55347
 radius = 0.446289
 
-[node name="Player" type="CharacterBody3D"]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_3qydi")
 speed = 10.0
 
@@ -36,8 +36,8 @@ script = ExtResource("4_vlldt")
 [node name="Attacking" type="Node" parent="StateMachine"]
 script = ExtResource("5_s1rgi")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0, 0.0961973, 0)
+[node name="PlayerLight" type="OmniLight3D" parent="."]
+transform = Transform3D(0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0, 0.35827, 0)
 light_color = Color(0.812104, 0.504552, 0.27822, 1)
 light_energy = 0.849
 light_indirect_energy = 10.93

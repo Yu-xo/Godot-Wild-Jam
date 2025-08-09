@@ -12,5 +12,4 @@ func _ready():
 	
 func _process(delta):
 	velocity.y -= gravity * delta
-	if canMove:
-		move_and_slide()
+	move_and_slide()

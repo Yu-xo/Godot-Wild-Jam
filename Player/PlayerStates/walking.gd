@@ -6,6 +6,7 @@ var target_rotation: float
 var horizontal_velocity
 
 func Enter():
+	print("walking")
 	target_rotation = player.rotation.y
 	
 func Exit():

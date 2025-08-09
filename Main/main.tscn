@@ -1,21 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dw8pvbd1ifdjt"]
+[gd_scene load_steps=3 format=3 uid="uid://dw8pvbd1ifdjt"]
 
-[ext_resource type="Shader" uid="uid://bcho8bvyua7v" path="res://Main/dither.gdshader" id="1_qvhan"]
 [ext_resource type="Script" uid="uid://dxs4ulxon2cis" path="res://Main/SceneManager/scene_manager.gd" id="1_yh5la"]
 [ext_resource type="PackedScene" uid="uid://dnhogx6ov1y71" path="res://Main/SceneManager/fade_control.tscn" id="2_2w1kt"]
-[ext_resource type="Texture2D" uid="uid://cexf4xs3r6pa6" path="res://Main/BayerDithering.png" id="2_eunhr"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_eunhr"]
-shader = ExtResource("1_qvhan")
-shader_parameter/u_dither_tex = ExtResource("2_eunhr")
-shader_parameter/u_contrast = 3.27
-shader_parameter/u_offset = 0.01
-shader_parameter/u_dither_size = 1
 
 [node name="Main" type="Node"]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-material = SubResource("ShaderMaterial_eunhr")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -40,3 +30,4 @@ unique_name_in_owner = true
 
 [node name="FadeControl" parent="SubViewportContainer/SubViewport/SceneManager" instance=ExtResource("2_2w1kt")]
 unique_name_in_owner = true
+layer = 2

@@ -1,0 +1,11 @@
+extends Node
+
+@export var maxhp: float = 500.0
+@export var currhp: float = 500.0
+
+func take_dmg(amount: float):
+	if currhp - amount <= 0.0:
+		queue_free()
+		pass #TODO: reset game on loss
+	else:
+		currhp -= amount
