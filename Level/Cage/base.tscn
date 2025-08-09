@@ -203,10 +203,10 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_tk5uj")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xv12j"]
-size = Vector3(17.3484, 9.53076, 10.6998)
+size = Vector3(18.0909, 9.53076, 11.0341)
 
 [node name="Base" type="Node3D" groups=["base"]]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_p8rau")
 
 [node name="Hamster Cage" type="Node3D" parent="."]
@@ -247,7 +247,7 @@ skeleton = NodePath("")
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.905884, 3.8894, -1.06265)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.938566, 3.8894, -0.993296)
 shape = SubResource("BoxShape3D_xv12j")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

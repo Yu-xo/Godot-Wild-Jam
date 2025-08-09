@@ -10,12 +10,11 @@ func Exit():
 	pass
 	
 func Update(delta):
-	var base = get_tree().get_first_node_in_group("base")
-	if base == null:
+	if test_enemy.base == null:
 		return
 
 	var enemy_pos = test_enemy.global_transform.origin
-	var base_pos = base.global_transform.origin
+	var base_pos = test_enemy.base.global_transform.origin
 
 	var dir = (base_pos - enemy_pos)
 	dir.y = 0  

@@ -6,7 +6,9 @@ var base
 var in_range = false
 
 func _ready():
+	await get_tree().process_frame
 	base = get_tree().get_first_node_in_group("base")
-	
+
 func _process(delta):
 	velocity.y -= ProjectSettings.get("physics/2d/default_gravity")
+	move_and_slide()

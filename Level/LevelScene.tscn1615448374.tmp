@@ -85,7 +85,7 @@ environment = SubResource("Environment_e8b0j")
 [node name="Spawners" type="Node3D" parent="."]
 
 [node name="WaveSpawner" parent="Spawners" instance=ExtResource("8_1jd1c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4248, 0.531046, 17.2997)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1705, 0.521685, 29.1782)
 enemy_scenes = {
 "Squirrel": ExtResource("7_6umj8")
 }
@@ -116,7 +116,7 @@ camera_3d_resource = SubResource("Resource_duhdn")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="GameViewCam" type="Node3D" parent="Node"]
-transform = Transform3D(1, 0, 0, 0, 0.907961, 0.419056, 0, -0.419056, 0.907961, 0, 15.2551, 25.1185)
+transform = Transform3D(1, 0, 0, 0, 0.907961, 0.419056, 0, -0.419056, 0.907961, -0.0209793, 17.401, 22.9705)
 script = ExtResource("2_1jd1c")
 tween_resource = SubResource("Resource_64v2o")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
@@ -137,7 +137,7 @@ script = ExtResource("6_42rcx")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="Base" parent="." instance=ExtResource("8_c0obw")]
-transform = Transform3D(2, -0.0025984, 0.00199421, 0.00259759, 2, 0.00082876, -0.00199524, -0.000826198, 2, 1.639, 0.444, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.61132, 0.444036, 0)
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.982723, 0.185083, 0, -0.185083, -0.982723, 0, 0, 0)

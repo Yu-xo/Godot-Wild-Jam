@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmf6718ca2vsu"]
+
+[ext_resource type="Script" uid="uid://ddoqmh0xmb4d1" path="res://Enemies/WaveSpawner/wave_spawner.gd" id="1_fo1c1"]
+
+[node name="WaveSpawner" type="Node3D" node_paths=PackedStringArray("spawn_point")]
+script = ExtResource("1_fo1c1")
+spawner_id = "1"
+spawn_point = NodePath(".")
