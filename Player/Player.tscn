@@ -35,3 +35,13 @@ script = ExtResource("4_vlldt")
 
 [node name="Attacking" type="Node" parent="StateMachine"]
 script = ExtResource("5_s1rgi")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0, 0.0961973, 0)
+light_color = Color(0.812104, 0.504552, 0.27822, 1)
+light_energy = 0.849
+light_indirect_energy = 10.93
+light_volumetric_fog_energy = 1.537
+light_specular = 0.0
+omni_range = 1.601
+omni_attenuation = 1.03

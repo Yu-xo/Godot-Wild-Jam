@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3ulk2aohy2cu"]
+[gd_scene load_steps=14 format=3 uid="uid://d3ulk2aohy2cu"]
 
 [ext_resource type="PackedScene" uid="uid://bn2kes04t1rw7" path="res://Player/Player.tscn" id="1_nxf8d"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_1vn1f"]
@@ -7,9 +7,30 @@
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_bqqld"]
 [ext_resource type="Script" uid="uid://4rle3ndvp421" path="res://Main/camera.gd" id="4_uo2m8"]
 
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_bqqld"]
+rayleigh_coefficient = 0.0
+
+[sub_resource type="Sky" id="Sky_64v2o"]
+sky_material = SubResource("PhysicalSkyMaterial_bqqld")
+
+[sub_resource type="Environment" id="Environment_duhdn"]
+background_mode = 1
+background_energy_multiplier = 0.85
+sky = SubResource("Sky_64v2o")
+fog_light_color = Color(0.392253, 0.624777, 0.220041, 1)
+fog_light_energy = 0.06
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.099
+volumetric_fog_albedo = Color(0.293298, 0.318537, 0.118146, 1)
+volumetric_fog_emission = Color(0, 0.200369, 4.81308e-08, 1)
+volumetric_fog_emission_energy = 0.4
+volumetric_fog_detail_spread = 0.5
+volumetric_fog_ambient_inject = 0.68
+volumetric_fog_sky_affect = 0.25
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_st0kd"]
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_nxf8d"]
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_bqqld"]
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
 [sub_resource type="Resource" id="Resource_64v2o"]
@@ -34,16 +55,19 @@ metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
 [node name="Testscene" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_duhdn")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(59, 0, 0, 0, 59, 0, 0, 0, 59, 0, 0, 0)
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
 mesh = SubResource("PlaneMesh_st0kd")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 transform = Transform3D(0.0206642, 0, 0, 0, 1, 0, 0, 0, -0.019652, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-transform = Transform3D(48.3928, 0, 0, 0, 1, 0, 0, 0, -50.8855, 0, 0, 0)
-shape = SubResource("ConcavePolygonShape3D_nxf8d")
+transform = Transform3D(48.3929, 0, 0, 0, 1, 0, 0, 0, -50.8854, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_bqqld")
 
 [node name="Player" parent="." instance=ExtResource("1_nxf8d")]
 transform = Transform3D(1.3928, 0, -0.556882, 0, 1.5, 0, 0.556882, 0, 1.3928, 0, -0.00796628, 0)
@@ -59,17 +83,19 @@ metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 [node name="PhantomCamera3D2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.965754, 0.25946, 0, -0.25946, 0.965754, -1.50637, 5.77693, 9.58019)
 script = ExtResource("2_1vn1f")
-priority_override = true
 tween_resource = SubResource("Resource_64v2o")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.965754, 0.25946, 0, -0.25946, 0.965754, -1.50637, 5.77693, 9.58019)
+[node name="sway" type="Node3D" parent="."]
 script = ExtResource("4_uo2m8")
-sway_amount = 5.0
 
-[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+[node name="Camera3D" type="Camera3D" parent="sway"]
+transform = Transform3D(0.99971, 0.0077409, 0.0228053, 0, 0.946936, -0.321423, -0.0240832, 0.32133, 0.946661, -1.50637, 0.802341, 3.41936)
+
+[node name="PhantomCameraHost" type="Node" parent="sway/Camera3D"]
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("4_bqqld")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
