@@ -59,3 +59,6 @@ func enemy_killed():
 	enemies_alive -= 1
 	if enemies_alive <= 0:
 		emit_signal("wave_ended", current_wave)
+		# have it open upgrade screen
+		# for now just go to wave 2
+		start_wave(current_wave+1)

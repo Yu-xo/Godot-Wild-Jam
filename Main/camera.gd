@@ -14,10 +14,6 @@ func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	current_cam = phantom_camera_host.get_active_pcam()
 	default_position = current_cam.position
-	await get_tree().create_timer(4.0).timeout
-	# below just for testing, change this to be when play is pressed
-	game_view_cam.priority = 2
-	
 
 func _process(delta):
 	var switched_cam := false
@@ -28,7 +24,6 @@ func _process(delta):
 		target_offset = Vector3.ZERO
 		switched_cam = true
 		player.canMove = true
-		WaveState.start_wave(1)
 		await get_tree().create_timer(game_view_cam.tween_duration).timeout
 	var viewport_size = get_viewport().get_visible_rect().size
 	var mouse_pos = get_viewport().get_mouse_position()

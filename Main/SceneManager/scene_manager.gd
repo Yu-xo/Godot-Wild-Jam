@@ -10,7 +10,7 @@ var current_gui_scene: Node
 
 func _ready():
 	change_3d_scene(starting_scene, true)
-	#change_gui_scene(starting_gui_scene)
+	change_gui_scene(starting_gui_scene)
 	
 func change_3d_scene(scene_path: String, skip_fade_out: bool = false) -> void:
 	fade_control.visible = true
@@ -33,9 +33,10 @@ func change_3d_scene(scene_path: String, skip_fade_out: bool = false) -> void:
 func change_gui_scene(scene_path: String) -> void:
 	if current_gui_scene:
 		current_gui_scene.queue_free()
-		var new_gui_scene = load(scene_path).instantiate()
-		gui.add_child(new_gui_scene)
-		current_gui_scene = new_gui_scene
+		
+	var new_gui_scene = load(scene_path).instantiate()
+	gui.add_child(new_gui_scene)
+	current_gui_scene = new_gui_scene
 	
 func delete_current_gui_scene() -> void:
 	for children in gui.get_children():

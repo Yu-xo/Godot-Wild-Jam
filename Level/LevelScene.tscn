@@ -108,14 +108,14 @@ speed = 13.0
 [node name="Node" type="Node" parent="."]
 
 [node name="MainMenuCam" type="Node3D" parent="Node" groups=["menucam"]]
-transform = Transform3D(0.897649, 0.00902518, -0.440619, 0.0125377, 0.998863, 0.0460021, 0.440533, -0.046818, 0.896514, -1.97872, 4.95172, 2.08592)
+transform = Transform3D(0.99164, -0.00651201, -0.12887, 0.0125377, 0.998863, 0.0460021, 0.128424, -0.0472332, 0.990593, -3.4574, 4.95172, 3.31438)
 script = ExtResource("2_1jd1c")
 priority = 1
 tween_resource = SubResource("Resource_qciut")
 camera_3d_resource = SubResource("Resource_duhdn")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="GameViewCam" type="Node3D" parent="Node"]
+[node name="GameViewCam" type="Node3D" parent="Node" groups=["gamecam"]]
 transform = Transform3D(1, 0, 0, 0, 0.907961, 0.419056, 0, -0.419056, 0.907961, 0, 15.2551, 25.1185)
 script = ExtResource("2_1jd1c")
 tween_resource = SubResource("Resource_64v2o")
@@ -128,7 +128,7 @@ sway_amount = 0.5
 sway_limit = 0.4
 
 [node name="Camera3D" type="Camera3D" parent="Node/CameraMount"]
-transform = Transform3D(0.897649, 0.00902518, -0.440619, 0.0125377, 0.998863, 0.0460021, 0.440533, -0.046818, 0.896514, -1.97872, 4.95172, 2.08592)
+transform = Transform3D(0.99164, -0.00651201, -0.12887, 0.0125377, 0.998863, 0.0460021, 0.128424, -0.0472332, 0.990593, -3.4574, 4.95172, 3.31438)
 
 [node name="PhantomCameraHost" type="Node" parent="Node/CameraMount/Camera3D"]
 process_priority = 300
