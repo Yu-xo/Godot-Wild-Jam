@@ -25,7 +25,7 @@ func _process(delta):
 	if game_view_cam.is_active() && not player.canMove:
 		current_cam = phantom_camera_host.get_active_pcam()
 		default_position = current_cam.position
-		target_offset = Vector3.ZERO # reset sway offset on camera switch
+		target_offset = Vector3.ZERO
 		switched_cam = true
 		await get_tree().create_timer(game_view_cam.tween_duration).timeout
 		player.canMove = true

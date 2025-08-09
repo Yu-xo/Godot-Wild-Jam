@@ -93,13 +93,13 @@ transform = Transform3D(48.3929, 0, 0, 0, 1, 0, 0, 0, -50.8854, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_bqqld")
 
 [node name="Player" parent="." instance=ExtResource("1_5l2ho")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.03885, 0)
+transform = Transform3D(-2.94303, 0, -0.581882, 0, 3, 0, 0.581882, 0, -2.94303, 0.167126, 0.496234, 0.554193)
 speed = 13.0
 
 [node name="Node" type="Node" parent="."]
 
-[node name="MainMenuCam" type="Node3D" parent="Node"]
-transform = Transform3D(0.998002, 0.0035422, -0.0630759, 0.00367124, 0.993488, 0.113879, 0.0630686, -0.113883, 0.99149, -1.57718, 3.62982, 3.68799)
+[node name="MainMenuCam" type="Node3D" parent="Node" groups=["menucam"]]
+transform = Transform3D(0.897649, 0.00902518, -0.440619, 0.0125377, 0.998863, 0.0460021, 0.440533, -0.046818, 0.896514, -1.97872, 4.95172, 2.08592)
 script = ExtResource("2_1jd1c")
 priority = 1
 tween_resource = SubResource("Resource_qciut")
@@ -107,7 +107,7 @@ camera_3d_resource = SubResource("Resource_duhdn")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="GameViewCam" type="Node3D" parent="Node"]
-transform = Transform3D(1, 0, 0, 0, 0.907961, 0.419056, 0, -0.419056, 0.907961, 0, 17.401, 22.9705)
+transform = Transform3D(1, 0, 0, 0, 0.907961, 0.419056, 0, -0.419056, 0.907961, -0.0209793, 17.401, 22.9705)
 script = ExtResource("2_1jd1c")
 tween_resource = SubResource("Resource_64v2o")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
@@ -119,7 +119,7 @@ sway_amount = 0.5
 sway_limit = 0.4
 
 [node name="Camera3D" type="Camera3D" parent="Node/sway"]
-transform = Transform3D(0.998002, 0.0035422, -0.0630759, 0.00367124, 0.993488, 0.113879, 0.0630686, -0.113883, 0.99149, -1.57718, 3.62982, 3.68799)
+transform = Transform3D(0.897649, 0.00902518, -0.440619, 0.0125377, 0.998863, 0.0460021, 0.440533, -0.046818, 0.896514, -1.97872, 4.95172, 2.08592)
 
 [node name="PhantomCameraHost" type="Node" parent="Node/sway/Camera3D"]
 process_priority = 300

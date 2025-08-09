@@ -98,6 +98,6 @@ omni_range = 1.601
 omni_attenuation = 1.03
 
 [node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7102, 3.65846, 74.4885)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.624292, 0.841899, 1.0196)
 
 [editable path="hamster"]
