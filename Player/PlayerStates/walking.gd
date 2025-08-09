@@ -1,18 +1,22 @@
 extends State
 @onready var player = $"../.."
+@onready var animation_player = $"../../hamster/AnimationPlayer"
 var target_speed: float = 0.0
 var rotation_speed: float = 25.0
 var target_rotation: float
 var horizontal_velocity
 
 func Enter():
-	print("walking")
+	animation_player.play("Walk", 0.1, 2.0)
 	target_rotation = player.rotation.y
 	
 func Exit():
 	pass
 	
 func Update(delta):
+	if not player.canMove:
+		Transitioned.emit(self, "idle")
+		
 	var input_vector = Input.get_vector("left", "right", "forward", "backward")
 	var input_strength = input_vector.length()
 

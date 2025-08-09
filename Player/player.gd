@@ -3,16 +3,20 @@ extends CharacterBody3D
 @onready var collision_shape = $CollisionShape3D
 @onready var gravity = ProjectSettings.get("physics/3d/default_gravity")
 @export var speed: float
+@onready var marker_3d = $Marker3D
 var rotation_speed = 10.0
-var canMove = true
+var canMove = false
 
 func _ready(): 
 	canMove = false # player starts of not able to move because it's in the main menu screen
 	#TODO: make it so the player can start moving once the play button is pressed
 	
 func _process(delta):
-	var mouse_world_pos = get_mouse_world_position_on_plane(0.0)
-	if mouse_world_pos != null:
+	var mouse_world_pos = get_mouse_world_position_on_plane(1.0)
+	if mouse_world_pos != null and mouse_world_pos != Vector3.ZERO:
+		# Make marker3d follow mouse position on the plane
+		marker_3d.global_transform.origin = mouse_world_pos
+
 		var look_dir = mouse_world_pos - global_transform.origin
 		look_dir.y = 0
 		if look_dir.length() > 0.01:

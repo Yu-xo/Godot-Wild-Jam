@@ -1,9 +1,10 @@
 extends State
 
 @onready var player = $"../.."
+@onready var animation_player = $"../../hamster/AnimationPlayer"
 
 func Enter():
-	print("idle entered")
+	animation_player.play("Idle", 0.1)
 	player.velocity = Vector3.ZERO
 	
 func Exit():
@@ -11,6 +12,6 @@ func Exit():
 	
 func Update(delta):
 	var move_vector = Input.get_vector("backward", "forward", "left", "right")
-	if move_vector.length() > 0:
+	if move_vector.length() > 0 && player.canMove:
 		Transitioned.emit(self, "walking")
 	
