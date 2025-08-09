@@ -27,9 +27,9 @@ func Update(delta):
 		player.velocity.x = lerp(player.velocity.x, 0.0, delta * 6.0)
 		player.velocity.z = lerp(player.velocity.z, 0.0, delta * 6.0)
 
-	player.rotation.y = lerp_angle(player.rotation.y, target_rotation, rotation_speed * delta)
+	#player.rotation.y = lerp_angle(player.rotation.y, target_rotation, rotation_speed * delta)
 
 	if input_strength == 0:
-		var rotation_diff = abs(angle_difference(player.rotation.y, target_rotation))
-		if rotation_diff < 0.1:
-			Transitioned.emit(self, "idle")
+		#var rotation_diff = abs(angle_difference(player.rotation.y, target_rotation))
+		#if rotation_diff < 0.1:
+		Transitioned.emit(self, "idle")

@@ -9,3 +9,7 @@ func take_dmg(amount: float):
 		pass #TODO: reset game on loss
 	else:
 		currhp -= amount
+
+
+func _on_area_3d_body_entered(body):
+	body.in_range = true

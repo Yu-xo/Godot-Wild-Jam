@@ -1,0 +1,134 @@
+[gd_scene load_steps=20 format=3 uid="uid://d3ulk2aohy2cu"]
+
+[ext_resource type="PackedScene" uid="uid://bn2kes04t1rw7" path="res://Player/Player.tscn" id="1_5l2ho"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_1jd1c"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_3mt6o"]
+[ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="4_b023d"]
+[ext_resource type="Script" uid="uid://4rle3ndvp421" path="res://Main/camera.gd" id="5_f0wxp"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_42rcx"]
+[ext_resource type="PackedScene" uid="uid://wuncigv354tw" path="res://Enemies/test/testEnemy.tscn" id="7_6umj8"]
+[ext_resource type="PackedScene" uid="uid://club8vl0n7wdx" path="res://Level/Cage/base.tscn" id="8_c0obw"]
+
+[sub_resource type="Gradient" id="Gradient_duhdn"]
+colors = PackedColorArray(0, 0, 0, 1, 0.202526, 0.408576, 9.62615e-08, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qciut"]
+noise_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_e8b0j"]
+resource_local_to_scene = true
+width = 1507
+height = 1262
+seamless = true
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_duhdn")
+noise = SubResource("FastNoiseLite_qciut")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_duhdn"]
+sky_horizon_color = Color(0.130232, 0.271581, 0.0508229, 1)
+sky_cover = SubResource("NoiseTexture2D_e8b0j")
+ground_horizon_color = Color(0.0940464, 0.276389, 0.0741943, 1)
+sun_angle_max = 5.45
+sun_curve = 0.395852
+
+[sub_resource type="Sky" id="Sky_qciut"]
+sky_material = SubResource("ProceduralSkyMaterial_duhdn")
+
+[sub_resource type="Environment" id="Environment_e8b0j"]
+background_mode = 2
+sky = SubResource("Sky_qciut")
+ambient_light_energy = 1.78
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0108
+volumetric_fog_albedo = Color(0.0505251, 0.0704366, 0.00015274, 1)
+volumetric_fog_emission = Color(0, 0.273376, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_st0kd"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_bqqld"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="Resource" id="Resource_qciut"]
+script = ExtResource("3_3mt6o")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="Resource" id="Resource_duhdn"]
+script = ExtResource("4_b023d")
+keep_aspect = 1
+cull_mask = 1048575
+h_offset = 0.0
+v_offset = 0.0
+projection = 0
+fov = 75.0
+size = 1.0
+frustum_offset = Vector2(0, 0)
+near = 0.05
+far = 4000.0
+metadata/_custom_type_script = "uid://b8hhnqsugykly"
+
+[sub_resource type="Resource" id="Resource_64v2o"]
+script = ExtResource("3_3mt6o")
+duration = 2.5
+transition = 10
+ease = 2
+
+[node name="Level" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_e8b0j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0.00280094, 0.032887, -0.0861273)
+mesh = SubResource("PlaneMesh_st0kd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+transform = Transform3D(0.0206642, 0, 0, 0, 1, 0, 0, 0, -0.019652, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(48.3929, 0, 0, 0, 1, 0, 0, 0, -50.8854, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_bqqld")
+
+[node name="Player" parent="." instance=ExtResource("1_5l2ho")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0.83321, 0)
+
+[node name="Node" type="Node" parent="."]
+
+[node name="MainMenuCam" type="Node3D" parent="Node"]
+transform = Transform3D(0.998002, 0.0035422, -0.0630759, 0.00367124, 0.993488, 0.113879, 0.0630686, -0.113883, 0.99149, -1.57718, 3.62982, 3.68799)
+script = ExtResource("2_1jd1c")
+priority = 1
+tween_resource = SubResource("Resource_qciut")
+camera_3d_resource = SubResource("Resource_duhdn")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="GameViewCam" type="Node3D" parent="Node"]
+transform = Transform3D(1, 0, 0, 0, 0.866871, 0.498533, 0, -0.498533, 0.866871, 0, 15.1905, 20.5808)
+script = ExtResource("2_1jd1c")
+priority = 2
+tween_resource = SubResource("Resource_64v2o")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="sway" type="Node3D" parent="Node"]
+transform = Transform3D(1, 1.61559e-27, 1.86265e-09, 0, 1, -8.67362e-19, -1.86265e-09, 8.67362e-19, 1, 0, -5.96046e-08, 2.38419e-07)
+script = ExtResource("5_f0wxp")
+sway_amount = 0.5
+sway_limit = 0.4
+
+[node name="Camera3D" type="Camera3D" parent="Node/sway"]
+transform = Transform3D(1, 9.28593e-10, -1.61468e-09, 1.61559e-27, 0.866871, 0.498533, 1.86265e-09, -0.498533, 0.866871, -3.83349e-08, 15.1905, 20.5808)
+
+[node name="PhantomCameraHost" type="Node" parent="Node/sway/Camera3D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("6_42rcx")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="TestEnemy" parent="Node" instance=ExtResource("7_6umj8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.7034, 2.27988e-06, 9.98108)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+
+[node name="Base" parent="." instance=ExtResource("8_c0obw")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.61132, 0.444036, 0)

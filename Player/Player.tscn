@@ -12,7 +12,7 @@ height = 1.55347
 radius = 0.446289
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
 script = ExtResource("1_3qydi")
 speed = 10.0
 

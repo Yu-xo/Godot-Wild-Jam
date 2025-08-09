@@ -20,7 +20,7 @@ render_target_update_mode = 4
 
 [node name="SceneManager" type="Node" parent="SubViewportContainer/SubViewport"]
 script = ExtResource("1_yh5la")
-starting_scene = "res://Level/test/testscene.tscn"
+starting_scene = "res://Level/LevelScene.tscn"
 
 [node name="WorldSpace" type="Node3D" parent="SubViewportContainer/SubViewport/SceneManager"]
 unique_name_in_owner = true

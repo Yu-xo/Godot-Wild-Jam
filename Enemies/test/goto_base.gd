@@ -2,7 +2,6 @@ extends State
 
 @onready var test_enemy = $"../.."
 
-const ATTACK_RANGE = 8.0
 
 func Enter():
 	pass
@@ -24,8 +23,8 @@ func Update(delta):
 
 	var dist = enemy_pos.distance_to(base_pos)
 
-	var move_speed = 5.0
+	var move_speed = 2.0
 	test_enemy.global_translate(dir * test_enemy.speed * delta)
 
-	if dist <= ATTACK_RANGE:
+	if test_enemy.in_range:
 		Transitioned.emit(self, "attack")
