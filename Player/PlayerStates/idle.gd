@@ -14,4 +14,3 @@ func Update(delta):
 	var move_vector = Input.get_vector("backward", "forward", "left", "right")
 	if move_vector.length() > 0 && player.canMove:
 		Transitioned.emit(self, "walking")
-	

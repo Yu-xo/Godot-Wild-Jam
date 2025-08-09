@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bn2kes04t1rw7"]
+[gd_scene load_steps=9 format=3 uid="uid://bn2kes04t1rw7"]
 
 [ext_resource type="Script" uid="uid://bncsb2e62uoe5" path="res://Player/player.gd" id="1_3qydi"]
 [ext_resource type="PackedScene" uid="uid://dxaocmgahyqph" path="res://Player/Model/hamster.glb" id="2_6ysni"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://gn1nlknxqrc4" path="res://Player/PlayerStates/idle.gd" id="3_6ysni"]
 [ext_resource type="Script" uid="uid://c36tl8u6pwv7n" path="res://Player/PlayerStates/walking.gd" id="4_vlldt"]
 [ext_resource type="Script" uid="uid://clyoo81pcywhp" path="res://Player/PlayerStates/attacking.gd" id="5_s1rgi"]
+[ext_resource type="PackedScene" uid="uid://bs2mvdhbtrmg8" path="res://Player/PlayerStates/Projectiles/Pellet.tscn" id="6_s1rgi"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tok1r"]
 height = 1.55347
@@ -72,19 +73,26 @@ bone = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.776738, 0.0885881)
 shape = SubResource("CylinderShape3D_tok1r")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "object")]
+[node name="AttackStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "object")]
+script = ExtResource("2_8g4oa")
+initial_state = NodePath("Attacking")
+object = NodePath("..")
+
+[node name="Attacking" type="Node" parent="AttackStateMachine"]
+script = ExtResource("5_s1rgi")
+base_throw_force = 30.0
+pellet_scene = ExtResource("6_s1rgi")
+
+[node name="MovementStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "object")]
 script = ExtResource("2_8g4oa")
 initial_state = NodePath("Idle")
 object = NodePath("..")
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="MovementStateMachine"]
 script = ExtResource("3_6ysni")
 
-[node name="Walking" type="Node" parent="StateMachine"]
+[node name="Walking" type="Node" parent="MovementStateMachine"]
 script = ExtResource("4_vlldt")
-
-[node name="Attacking" type="Node" parent="StateMachine"]
-script = ExtResource("5_s1rgi")
 
 [node name="PlayerLight" type="OmniLight3D" parent="."]
 transform = Transform3D(0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0, 0.35827, 0)

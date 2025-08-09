@@ -12,16 +12,16 @@ var enemies_alive: int = 0
 var wave_data := {
 	1: {
 		1: [
-			{"type": "Squirrel", "delay": 4.0},
-			{"type": "Squirrel", "delay": 4.0},
-			{"type": "Squirrel", "delay": 4.0},
-			{"type": "Squirrel", "delay": 1.0}
+			{"type": "Squirrel", "delay": 10.0},
+			{"type": "Squirrel", "delay": 10.0},
+			{"type": "Squirrel", "delay": 10.0},
+			{"type": "Squirrel", "delay": 10.0}
 		],
 		2: [
-			{"type": "Squirrel", "delay": 4.0},
-			{"type": "Squirrel", "delay": 4.0},
-			{"type": "Squirrel", "delay": 4.0},
-			{"type": "Squirrel", "delay": 1.0}
+			{"type": "Squirrel", "delay": 40.0},
+			{"type": "Squirrel", "delay": 10.0},
+			{"type": "Squirrel", "delay": 10.0},
+			{"type": "Squirrel", "delay": 10.0}
 		]
 	}
 }

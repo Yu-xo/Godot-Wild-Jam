@@ -39,7 +39,7 @@ func _process(delta):
 	move_and_slide()
 
 func start_marker_delay() -> void:
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(0.5).timeout
 	allow_marker_move = true
 
 func get_mouse_world_position_on_plane(y: float) -> Vector3:

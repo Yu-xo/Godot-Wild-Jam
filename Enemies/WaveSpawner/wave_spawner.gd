@@ -10,7 +10,6 @@ func _ready():
 	call_deferred("_connect_wave_signal")
 
 func _connect_wave_signal():
-	print("Spawner ready with ID: %s" % spawner_id)
 	WaveState.connect("wave_started", Callable(self, "_on_wave_started"))
 
 func _on_wave_started(wave_number: int):

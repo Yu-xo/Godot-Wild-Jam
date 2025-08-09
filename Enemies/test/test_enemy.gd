@@ -2,13 +2,23 @@ extends CharacterBody3D
 
 @export var damage: float = 5.0
 @export var speed: float = 5.0
+@export var maxhp: float = 15
+var currhp
 var base
 var in_range = false
 
 func _ready():
+	currhp = maxhp
 	await get_tree().process_frame
 	base = get_tree().get_first_node_in_group("base")
 
 func _process(delta):
 	velocity.y -= ProjectSettings.get("physics/2d/default_gravity")
 	move_and_slide()
+
+func take_dmg(amount):
+	if currhp - amount <= 0.0:
+		#TODO switch with death anim then queue free
+		queue_free()
+	else:
+		currhp -= amount

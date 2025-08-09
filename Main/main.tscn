@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dw8pvbd1ifdjt"]
+[gd_scene load_steps=7 format=3 uid="uid://dw8pvbd1ifdjt"]
 
 [ext_resource type="Shader" uid="uid://bcho8bvyua7v" path="res://Main/dither.gdshader" id="1_eunhr"]
+[ext_resource type="Script" uid="uid://d4c1xynlsyn0l" path="res://Main/main.gd" id="1_k3v36"]
 [ext_resource type="Script" uid="uid://dxs4ulxon2cis" path="res://Main/SceneManager/scene_manager.gd" id="1_yh5la"]
 [ext_resource type="PackedScene" uid="uid://dnhogx6ov1y71" path="res://Main/SceneManager/fade_control.tscn" id="2_2w1kt"]
 [ext_resource type="Texture2D" uid="uid://cexf4xs3r6pa6" path="res://Main/BayerDithering.png" id="2_k3v36"]
@@ -13,6 +14,7 @@ shader_parameter/u_offset = -0.005
 shader_parameter/u_dither_size = 1
 
 [node name="Main" type="Node"]
+script = ExtResource("1_k3v36")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_liyct")

@@ -12,5 +12,6 @@ func Exit():
 	
 
 func _on_attack_timer_timeout():
-	test_enemy.base.take_dmg(test_enemy.damage)
-	attack_timer.start()
+	if test_enemy.base:
+		test_enemy.base.take_dmg(test_enemy.damage)
+		attack_timer.start()
