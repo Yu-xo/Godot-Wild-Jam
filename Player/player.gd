@@ -2,8 +2,9 @@ extends CharacterBody3D
 
 @onready var collision_shape = $CollisionShape3D
 @onready var gravity = ProjectSettings.get("physics/3d/default_gravity")
-@export var speed: float
 @onready var marker_3d = $Marker3D
+
+@export var speed: float
 var rotation_speed = 10.0
 var canMove = false
 var menu_camera
@@ -34,7 +35,6 @@ func _process(delta):
 				if look_dir.length() > 0.01:
 					var target_yaw = atan2(look_dir.x, look_dir.z)
 					rotation.y = lerp_angle(rotation.y, target_yaw, rotation_speed * delta)
-
 	velocity.y -= gravity * delta
 	move_and_slide()
 

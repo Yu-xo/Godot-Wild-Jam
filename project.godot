@@ -72,3 +72,7 @@ camright={
 
 3d_physics/layer_2="Enemy"
 3d_physics/layer_3="Floor"
+
+[rendering]
+
+occlusion_culling/use_occlusion_culling=true

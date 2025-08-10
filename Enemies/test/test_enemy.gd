@@ -21,6 +21,7 @@ func take_dmg(amount):
 	spawn_damage_popup(amount)
 	if currhp - amount <= 0.0:
 		#TODO switch with death anim then queue free
+		WaveState.enemy_killed()
 		queue_free()
 	else:
 		currhp -= amount
