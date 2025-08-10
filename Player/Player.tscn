@@ -65,6 +65,7 @@ bones/38/rotation = Quaternion(2.33979e-07, -0.00094763, -1.50228e-07, 1)
 bones/38/scale = Vector3(0.999999, 0.999999, 0.999999)
 
 [node name="LookAtModifier3D" type="LookAtModifier3D" parent="hamster/root/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.509093)
 target_node = NodePath("../../../../Marker3D")
 bone_name = "spine_02.x"
 bone = 3

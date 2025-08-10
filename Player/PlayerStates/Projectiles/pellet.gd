@@ -29,3 +29,8 @@ func _on_area_3d_body_entered(body):
 	if body.is_in_group("enemy"):
 		body.take_dmg(damage)
 		queue_free()
+
+
+func _on_area_3d_area_entered(area):
+	if area.is_in_group("floor"):
+		queue_free()
