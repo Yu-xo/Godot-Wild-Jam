@@ -56,6 +56,8 @@ func Update(delta):
 	# Handle cooldown
 	if cooldown_timer > 0:
 		cooldown_timer -= delta
+		
+	current_weapon = get_weapon_from_upgrades()
 	
 	# Check for attack input
 	if Input.is_action_pressed("attack") and cooldown_timer <= 0 and is_attacking && player.canMove:
@@ -63,7 +65,15 @@ func Update(delta):
 		var stats = weapon_stats[current_weapon]
 		cooldown_timer = base_attack_cooldown * stats["cooldown_multiplier"]
 
-
+func get_weapon_from_upgrades() -> WeaponType:
+	# Return the highest weapon type the player has
+	if UpgradeState.has_upgrade("Toothpick Bow"):
+		return WeaponType.BOW
+	elif UpgradeState.has_upgrade("Twig Slingshot"):
+		return WeaponType.SLINGSHOT
+	else:
+		return WeaponType.THROWING
+		
 func fire_projectile():
 	var stats = weapon_stats[current_weapon]
 	

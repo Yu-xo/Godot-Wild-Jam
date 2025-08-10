@@ -19,6 +19,7 @@ func _process(delta):
 
 func take_dmg(amount):
 	spawn_damage_popup(amount)
+	AudioManager.play_sound("res://Enemies/test/enemyhit_sfx.wav", "SFX", 75.0)
 	if currhp - amount <= 0.0:
 		#TODO switch with death anim then queue free
 		WaveState.enemy_killed()

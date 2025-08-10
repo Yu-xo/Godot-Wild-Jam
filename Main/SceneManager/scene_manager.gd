@@ -9,10 +9,13 @@ var current_3d_scene: Node
 var current_gui_scene: Node
 
 func _ready():
-	change_3d_scene(starting_scene, true)
-	change_gui_scene(starting_gui_scene)
+	SceneManager.request_3d_scene_change.connect(_handle_3d_scene_change)
+	SceneManager.request_gui_scene_change.connect(_handle_gui_scene_change)
+	SceneManager.request_delete_current_gui_scene.connect(_handle_delete_current_gui_scene)
+	SceneManager.change_3d_scene(starting_scene, true)
+	SceneManager.change_gui_scene(starting_gui_scene)
 	
-func change_3d_scene(scene_path: String, skip_fade_out: bool = false) -> void:
+func _handle_3d_scene_change(scene_path: String, skip_fade_out: bool = false) -> void:
 	fade_control.visible = true
 	var current_scene_path = current_3d_scene.scene_file_path if current_3d_scene else ""
 	
@@ -30,7 +33,7 @@ func change_3d_scene(scene_path: String, skip_fade_out: bool = false) -> void:
 	await fade_control.fade_in()
 
 
-func change_gui_scene(scene_path: String) -> void:
+func _handle_gui_scene_change(scene_path: String) -> void:
 	if current_gui_scene:
 		current_gui_scene.queue_free()
 		
@@ -38,6 +41,6 @@ func change_gui_scene(scene_path: String) -> void:
 	gui.add_child(new_gui_scene)
 	current_gui_scene = new_gui_scene
 	
-func delete_current_gui_scene() -> void:
+func _handle_delete_current_gui_scene() -> void:
 	for children in gui.get_children():
 		children.queue_free()

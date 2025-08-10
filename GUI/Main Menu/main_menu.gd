@@ -8,5 +8,4 @@ func _on_start_pressed():
 	canvas_layer.visible = false
 	await get_tree().create_timer(5.0).timeout
 	WaveState.start_wave(1)
-	get_tree().get_first_node_in_group("SceneManager").delete_current_gui_scene()
-	
+	SceneManager.delete_current_gui_scene()

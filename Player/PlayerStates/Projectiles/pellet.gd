@@ -7,6 +7,7 @@ var velocity = Vector3.ZERO
 var life_timer = 0.0
 
 func _ready():
+	AudioManager.play_sound("res://Player/PlayerStates/Projectiles/pellet_throw_sfx.wav")
 	life_timer = lifetime
 
 func _process(delta):

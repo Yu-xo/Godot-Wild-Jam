@@ -12,16 +12,29 @@ var enemies_alive: int = 0
 var wave_data := {
 	1: {
 		1: [
-			{"type": "Squirrel", "delay": 10.0},
-			{"type": "Squirrel", "delay": 10.0},
-			{"type": "Squirrel", "delay": 10.0},
-			{"type": "Squirrel", "delay": 10.0}
+			{"type": "Squirrel", "delay": 1.0},
+
 		],
 		2: [
-			{"type": "Squirrel", "delay": 40.0},
+			{"type": "Squirrel", "delay": 1.0},
+
+		]
+	},
+	2: {
+		1: [
 			{"type": "Squirrel", "delay": 10.0},
+		],
+		2: [
 			{"type": "Squirrel", "delay": 10.0},
-			{"type": "Squirrel", "delay": 10.0}
+
+		],
+		3: [
+			{"type": "Squirrel", "delay": 5.0},
+
+		],
+		4: [
+			{"type": "Squirrel", "delay": 5.0},
+
 		]
 	}
 }
@@ -58,7 +71,5 @@ func pop_enemy_for_spawner(spawner_id: String) -> Dictionary:
 func enemy_killed():
 	enemies_alive -= 1
 	if enemies_alive <= 0:
-		emit_signal("wave_ended", current_wave)
-		# have it open upgrade screen
-		# for now just go to wave 2
-		start_wave(current_wave+1)
+		get_tree().get_first_node_in_group("player").canMove = false
+		SceneManager.change_gui_scene("res://GUI/UpgradeMenu/UpgradeMenu.tscn")

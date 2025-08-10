@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=3 uid="uid://dr0c6g5bt3lin"]
+
+[ext_resource type="Script" uid="uid://bh1lgsf3d1vo" path="res://GUI/UpgradeMenu/upgrade_menu.gd" id="1_xb8pu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbbyl"]
+
+[sub_resource type="Theme" id="Theme_s3f33"]
+Button/font_sizes/font_size = 40
+PanelContainer/styles/panel = SubResource("StyleBoxEmpty_tbbyl")
+VBoxContainer/constants/separation = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_27lhk"]
+font_size = 71
+
+[sub_resource type="Theme" id="Theme_xb8pu"]
+
+[sub_resource type="Theme" id="Theme_27lhk"]
+
+[node name="UpgradeMenu" type="CanvasLayer"]
+layer = 3
+follow_viewport_enabled = true
+script = ExtResource("1_xb8pu")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_s3f33")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control/PanelContainer"]
+custom_minimum_size = Vector2(204.2, 246.91)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Control/PanelContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Wave Completed!"
+label_settings = SubResource("LabelSettings_27lhk")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 175
+alignment = 1
+
+[node name="Option1" type="Button" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 575)
+layout_mode = 2
+theme = SubResource("Theme_xb8pu")
+theme_override_constants/outline_size = 1
+text = "Upgrade1"
+autowrap_mode = 3
+
+[node name="Option2" type="Button" parent="Control/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme = SubResource("Theme_27lhk")
+text = "Upgrade2"
+autowrap_mode = 3
+
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
+[connection signal="mouse_entered" from="Control/PanelContainer/MarginContainer/HBoxContainer/Option1" to="." method="_on_option_1_mouse_entered"]
+[connection signal="mouse_exited" from="Control/PanelContainer/MarginContainer/HBoxContainer/Option1" to="." method="_on_option_1_mouse_exited"]
+[connection signal="pressed" from="Control/PanelContainer/MarginContainer/HBoxContainer/Option1" to="." method="_on_option_1_pressed"]
+[connection signal="mouse_entered" from="Control/PanelContainer/MarginContainer/HBoxContainer/Option2" to="." method="_on_option_2_mouse_entered"]
+[connection signal="mouse_exited" from="Control/PanelContainer/MarginContainer/HBoxContainer/Option2" to="." method="_on_option_2_mouse_exited"]
+[connection signal="pressed" from="Control/PanelContainer/MarginContainer/HBoxContainer/Option2" to="." method="_on_option_2_pressed"]

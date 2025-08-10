@@ -46,8 +46,7 @@ func _spawn_next():
 	
 	var enemy_type = spawn_info.get("type")
 	var delay = spawn_info.get("delay")
-	
-	print("Spawning %s with delay %f for spawner %s" % [enemy_type, delay, spawner_id])
+	await get_tree().create_timer(delay).timeout
 	
 	if enemy_type in enemy_scenes:
 		var enemy_instance = enemy_scenes[enemy_type].instantiate()
@@ -55,5 +54,4 @@ func _spawn_next():
 	else:
 		push_warning("Unknown enemy type: %s" % enemy_type)
 	
-	await get_tree().create_timer(delay).timeout
 	_spawn_next()

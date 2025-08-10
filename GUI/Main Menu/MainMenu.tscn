@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://ci0njhlib4tgn" path="res://GUI/Main Menu/main_menu.gd" id="1_sdo8u"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbbyl"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sdo8u"]
 
 [sub_resource type="Theme" id="Theme_sdo8u"]
 Button/font_sizes/font_size = 40
-PanelContainer/styles/panel = SubResource("StyleBoxEmpty_tbbyl")
+PanelContainer/styles/panel = SubResource("StyleBoxEmpty_sdo8u")
 VBoxContainer/constants/separation = 4
 
 [node name="CanvasLayer" type="CanvasLayer"]

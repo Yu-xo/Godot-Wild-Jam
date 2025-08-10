@@ -10,6 +10,9 @@ var target_offset := Vector3.ZERO
 var default_position := Vector3.ZERO
 var current_cam
 var player
+
+var has_switched := false  # NEW flag
+
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	current_cam = phantom_camera_host.get_active_pcam()
@@ -18,13 +21,15 @@ func _ready():
 func _process(delta):
 	var switched_cam := false
 
-	if game_view_cam.is_active() && not player.canMove:
+	if game_view_cam.is_active() and not player.canMove and not has_switched:
+		has_switched = true
 		current_cam = phantom_camera_host.get_active_pcam()
 		default_position = current_cam.position
 		target_offset = Vector3.ZERO
 		switched_cam = true
 		await get_tree().create_timer(game_view_cam.tween_duration).timeout
 		player.canMove = true
+
 	var viewport_size = get_viewport().get_visible_rect().size
 	var mouse_pos = get_viewport().get_mouse_position()
 

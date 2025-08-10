@@ -11,6 +11,8 @@ var menu_camera
 var just_swapped_cams = false
 var allow_marker_move = false
 
+var scrap = 0.0
+
 func _ready(): 
 	canMove = false
 	menu_camera = get_tree().get_first_node_in_group("menucam")
@@ -36,7 +38,8 @@ func _process(delta):
 					var target_yaw = atan2(look_dir.x, look_dir.z)
 					rotation.y = lerp_angle(rotation.y, target_yaw, rotation_speed * delta)
 	velocity.y -= gravity * delta
-	move_and_slide()
+	if canMove:
+		move_and_slide()
 
 func start_marker_delay() -> void:
 	await get_tree().create_timer(0.5).timeout
