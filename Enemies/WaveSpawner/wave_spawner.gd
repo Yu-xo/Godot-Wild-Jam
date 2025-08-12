@@ -50,7 +50,17 @@ func _spawn_next():
 	
 	if enemy_type in enemy_scenes:
 		var enemy_instance = enemy_scenes[enemy_type].instantiate()
+		
+		var radius = 5.0
+		var angle = randf() * TAU
+		var offset = Vector3(cos(angle), 0, sin(angle)) * randf_range(0, radius)
 		add_child(enemy_instance)
+		
+		if spawn_point:
+			enemy_instance.global_transform.origin = spawn_point.global_transform.origin + offset
+		else:
+			enemy_instance.global_transform.origin = global_transform.origin + offset
+		
 	else:
 		push_warning("Unknown enemy type: %s" % enemy_type)
 	

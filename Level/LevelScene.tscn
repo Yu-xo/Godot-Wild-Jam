@@ -55,11 +55,9 @@ glow_normalized = true
 glow_strength = 0.88
 fog_enabled = true
 fog_light_color = Color(0.418291, 0.466101, 0.319758, 1)
-fog_light_energy = 2.38
-fog_density = 0.005
-fog_aerial_perspective = 0.242
-fog_sky_affect = 0.549
-volumetric_fog_enabled = true
+fog_light_energy = 0.05
+fog_density = 0.0154
+fog_sky_affect = 0.734
 volumetric_fog_density = 0.0108
 volumetric_fog_albedo = Color(0.0505251, 0.0704366, 0.00015274, 1)
 volumetric_fog_emission = Color(0, 0.273376, 0, 1)
@@ -231,7 +229,7 @@ speed = 13.0
 [node name="Spawners" type="Node3D" parent="."]
 
 [node name="WaveSpawner" parent="Spawners" instance=ExtResource("8_1jd1c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.346, 0.531047, 14.87)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.346, 1.60104, 14.87)
 enemy_scenes = {
 "Squirrel": ExtResource("7_6umj8")
 }
@@ -244,14 +242,14 @@ enemy_scenes = {
 }
 
 [node name="WaveSpawner3" parent="Spawners" instance=ExtResource("8_1jd1c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.9838, 0.531049, -44.0033)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.0344, 2.98574, -39.2299)
 spawner_id = "3"
 enemy_scenes = {
 "Squirrel": ExtResource("7_6umj8")
 }
 
 [node name="WaveSpawner4" parent="Spawners" instance=ExtResource("8_1jd1c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.072, 0.531049, -48.6094)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.9818, 0.960754, -46.9018)
 spawner_id = "4"
 enemy_scenes = {
 "Squirrel": ExtResource("7_6umj8")

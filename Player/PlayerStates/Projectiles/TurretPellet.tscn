@@ -11,6 +11,7 @@ data = PackedVector3Array(0, 0.5, 0, 0, 0.5, 0, 0, 0.4977, 0.0475, 0, 0.5, 0, 0.
 script = ExtResource("1_o8f2o")
 damage = 2.0
 speed = 90.0
+projectile_sfx = "res://Player/PlayerStates/Projectiles/watershoot_sfx.wav"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_16itt")
