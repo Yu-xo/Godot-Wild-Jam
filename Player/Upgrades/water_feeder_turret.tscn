@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckx2mkygsfgou"]
+
+[ext_resource type="Script" uid="uid://i8pmg5f6v2l0" path="res://water_feeder_turret.gd" id="1_4nvq6"]
+[ext_resource type="PackedScene" uid="uid://bns0xnmmx0lfm" path="res://Player/PlayerStates/Projectiles/TurretPellet.tscn" id="2_2dt83"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2dt83"]
+size = Vector3(1.825, 4.635, 2.74)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vxdfs"]
+bottom_radius = 0.175
+
+[node name="WaterFeederTurret" type="Node3D"]
+script = ExtResource("1_4nvq6")
+shooting_range = 60.0
+rotation_speed = 10.0
+bullet_scene = ExtResource("2_2dt83")
+
+[node name="Top" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.927611, 0, 0, 0, 0.900331, 0, 0, 0, 0.734905, 0, 2.4802, 0)
+mesh = SubResource("BoxMesh_2dt83")
+
+[node name="base" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.98431e-08, 3.432e-08, -0.734905, -0.735755, 0.548299, 2.95298e-08, 0.564912, 0.714118, 1.26461e-08, 0.00428903, 0.245322, -0.638696)
+mesh = SubResource("CylinderMesh_vxdfs")

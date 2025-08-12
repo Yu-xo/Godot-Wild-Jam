@@ -5,8 +5,10 @@ var option_2: Dictionary
 @onready var option_1_button = $Control/PanelContainer/MarginContainer/HBoxContainer/Option1
 @onready var option_2_button = $Control/PanelContainer/MarginContainer/HBoxContainer/Option2
 var player
+
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
+	AudioManager.add_low_pass_filter_to_music()
 	_select_two_unique_types()
 
 func _select_two_unique_types():
@@ -56,12 +58,14 @@ func _select_two_unique_types():
 func _on_option_1_pressed():
 	UpgradeState.add_upgrade(option_1["name"] if option_1.has("name") else option_1["name"])
 	player.canMove = true
-	SceneManager.delete_current_gui_scene()
+	AudioManager.remove_low_pass_filter_from_music()
+	SceneManager.change_gui_scene("res://GUI/hud.tscn")
 
 func _on_option_2_pressed():
 	UpgradeState.add_upgrade(option_2["name"] if option_2.has("name") else option_2["name"])
 	player.canMove = true
-	SceneManager.delete_current_gui_scene()
+	AudioManager.remove_low_pass_filter_from_music()
+	SceneManager.change_gui_scene("res://GUI/hud.tscn")
 
 func _on_option_1_mouse_entered():
 	if option_1 and option_1.has("description"):

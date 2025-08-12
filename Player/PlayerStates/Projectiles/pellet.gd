@@ -1,21 +1,17 @@
 extends Node3D
 @export var damage = 5.0
 @export var speed = 15.0
-@export var lifetime = 5.0  # How long before pellet disappears
-
+@export var lifetime = 5.0
 var velocity = Vector3.ZERO
 var life_timer = 0.0
 
 func _ready():
-	AudioManager.play_sound("res://Player/PlayerStates/Projectiles/pellet_throw_sfx.wav")
+	AudioManager.play_sound("res://Player/PlayerStates/Projectiles/pellet_throw_sfx.wav", "SFX", 120.0)
 	life_timer = lifetime
 
 func _process(delta):
-	# Move the pellet
 	if velocity != Vector3.ZERO:
 		global_position += velocity * delta
-	velocity.y -= ProjectSettings.get("physics/3d/default_gravity") * delta
-	# Handle lifetime
 	life_timer -= delta
 	if life_timer <= 0:
 		queue_free()

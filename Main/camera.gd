@@ -5,13 +5,23 @@ extends Node3D
 @export var sway_limit: float = 0.1
 @onready var phantom_camera_host = $Camera3D/PhantomCameraHost
 @onready var game_view_cam = $"../GameCamMount/GameViewCam"
-
+const A_HAMSTERS_RESOLVE = preload("res://Music/a hamster's resolve.wav")
 var target_offset := Vector3.ZERO
 var default_position := Vector3.ZERO
 var current_cam
 var player
 
-var has_switched := false  # NEW flag
+var has_switched := false
+var shake_offset := Vector3.ZERO
+var shake_time := 0.0
+var shake_intensity := 0.0
+var shake_decay := 0.0
+
+func start_screenshake(intensity: float = 1.0, duration: float = 0.5):
+	shake_intensity = intensity
+	shake_decay = intensity / duration
+	shake_time = duration
+
 
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
@@ -29,6 +39,7 @@ func _process(delta):
 		switched_cam = true
 		await get_tree().create_timer(game_view_cam.tween_duration).timeout
 		player.canMove = true
+		AudioManager.play_music(A_HAMSTERS_RESOLVE, true, 0.0)
 
 	var viewport_size = get_viewport().get_visible_rect().size
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -42,7 +53,21 @@ func _process(delta):
 	target_offset.x = clamp(offset_x * sway_amount, -sway_limit, sway_limit)
 	target_offset.y = clamp(-offset_y * sway_amount, -sway_limit, sway_limit)
 
+	if shake_time > 0.0:
+		shake_time -= delta
+		shake_offset = Vector3(
+			randf_range(-1, 1),
+			randf_range(-1, 1),
+			0
+		) * shake_intensity
+		shake_intensity = max(shake_intensity - shake_decay * delta, 0)
+	else:
+		shake_offset = Vector3.ZERO
+		
 	if not switched_cam:
-		current_cam.position = current_cam.position.lerp(default_position + target_offset, delta * sway_speed)
+		current_cam.position = current_cam.position.lerp(
+			default_position + target_offset + shake_offset, 
+			delta * sway_speed
+		)
 	else:
 		current_cam.position = default_position

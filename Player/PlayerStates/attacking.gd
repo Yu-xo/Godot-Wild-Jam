@@ -25,23 +25,23 @@ var weapon_stats = {
 		"cooldown_multiplier": 1.0,
 		"force_multiplier": 1.0,
 		"height_multiplier": 1.0,
-		"damage": 8.0,
+		"damage": 5.0,
 		"projectile_scene": "pellet"
 	},
 	WeaponType.SLINGSHOT: {
 		"name": "Pellet Slingshot",
-		"cooldown_multiplier": 0.6,
-		"force_multiplier": 2.0,
-		"height_multiplier": 0.5,
-		"damage": 15.0,
+		"cooldown_multiplier": 0.9,
+		"force_multiplier": 1.1,
+		"height_multiplier": 0.9,
+		"damage": 6.0,
 		"projectile_scene": "slingshot_pellet"
 	},
 	WeaponType.BOW: {
 		"name": "Toothpick Bow",
-		"cooldown_multiplier": 0.4,
+		"cooldown_multiplier": 0.8,
 		"force_multiplier": 3.0,
-		"height_multiplier": 0.3,
-		"damage": 25.0,
+		"height_multiplier": 0.7,
+		"damage": 8.0,
 		"projectile_scene": "toothpick"
 	}
 }
@@ -53,20 +53,17 @@ func Exit():
 	is_attacking = false
 	
 func Update(delta):
-	# Handle cooldown
 	if cooldown_timer > 0:
 		cooldown_timer -= delta
 		
 	current_weapon = get_weapon_from_upgrades()
 	
-	# Check for attack input
 	if Input.is_action_pressed("attack") and cooldown_timer <= 0 and is_attacking && player.canMove:
 		fire_projectile()
 		var stats = weapon_stats[current_weapon]
 		cooldown_timer = base_attack_cooldown * stats["cooldown_multiplier"]
 
 func get_weapon_from_upgrades() -> WeaponType:
-	# Return the highest weapon type the player has
 	if UpgradeState.has_upgrade("Toothpick Bow"):
 		return WeaponType.BOW
 	elif UpgradeState.has_upgrade("Twig Slingshot"):
@@ -77,7 +74,6 @@ func get_weapon_from_upgrades() -> WeaponType:
 func fire_projectile():
 	var stats = weapon_stats[current_weapon]
 	
-	# Get the appropriate projectile scene
 	var projectile = get_projectile_scene().instantiate()
 	if not projectile:
 		print("No projectile scene available for ", stats["name"])
@@ -85,17 +81,14 @@ func fire_projectile():
 		
 	get_tree().current_scene.add_child(projectile)
 	
-	# Position projectile at player position + weapon-specific offset
 	var fire_origin = get_fire_origin()
 	projectile.global_position = fire_origin
 	
-	# Fire toward the player's marker_3d
 	var marker = player.marker_3d
 	if marker:
 		var direction = (marker.global_position - fire_origin).normalized()
 		apply_projectile_physics(projectile, direction, stats)
 	
-	# Play appropriate weapon sound and animation
 	play_weapon_effects()
 
 func get_fire_origin() -> Vector3:
@@ -105,7 +98,7 @@ func get_fire_origin() -> Vector3:
 		WeaponType.THROWING:
 			return base_pos + Vector3(0, 3.5, 0)  # Slightly higher for throwing
 		WeaponType.SLINGSHOT:
-			return base_pos + Vector3(0, -0.1, 0.3)  # Slightly forward and lower
+			return base_pos + Vector3(0, 2.5, 0.3)  # Slightly forward and lower
 		WeaponType.BOW:
 			return base_pos + Vector3(0, 0.1, 0.5)  # More forward for bow draw
 	
@@ -132,7 +125,6 @@ func play_weapon_effects():
 		WeaponType.THROWING:
 			pass
 			#AudioManager.play_sound("res://Player/SFX/throw_pellet.wav")
-			# throw anim
 		
 		WeaponType.SLINGSHOT:
 			pass

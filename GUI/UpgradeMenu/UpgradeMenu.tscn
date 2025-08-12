@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dr0c6g5bt3lin"]
+[gd_scene load_steps=8 format=3 uid="uid://dr0c6g5bt3lin"]
 
 [ext_resource type="Script" uid="uid://bh1lgsf3d1vo" path="res://GUI/UpgradeMenu/upgrade_menu.gd" id="1_xb8pu"]
+[ext_resource type="PackedScene" uid="uid://dtjmo571xg2mh" path="res://GUI/hud.tscn" id="2_27lhk"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbbyl"]
 
@@ -82,6 +83,9 @@ layout_mode = 2
 theme = SubResource("Theme_27lhk")
 text = "Upgrade2"
 autowrap_mode = 3
+
+[node name="HUD" parent="." instance=ExtResource("2_27lhk")]
+visible = false
 
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="mouse_entered" from="Control/PanelContainer/MarginContainer/HBoxContainer/Option1" to="." method="_on_option_1_mouse_entered"]

@@ -31,4 +31,4 @@ func spawn_damage_popup(amount):
 	var popup = DAMAGE_POPUP.instantiate()
 	popup.set_damage(amount)
 	get_tree().current_scene.add_child(popup)
-	popup.global_transform.origin = global_transform.origin + Vector3(0, 3, 0)
+	popup.global_transform.origin = global_transform.origin + Vector3(0, 2, 0)

@@ -13,27 +13,40 @@ var wave_data := {
 	1: {
 		1: [
 			{"type": "Squirrel", "delay": 1.0},
-
+			{"type": "Squirrel", "delay": 6.0},
+			{"type": "Squirrel", "delay": 4.0},
+			{"type": "Squirrel", "delay": 5.0}
 		],
 		2: [
-			{"type": "Squirrel", "delay": 1.0},
+			{"type": "Squirrel", "delay": 5.0},
+			{"type": "Squirrel", "delay": 8.0},
+			{"type": "Squirrel", "delay": 5.0}
 
 		]
 	},
 	2: {
 		1: [
-			{"type": "Squirrel", "delay": 10.0},
+			{"type": "Squirrel", "delay": 1.0},
+			{"type": "Squirrel", "delay": 5.0},
+			{"type": "Squirrel", "delay": 5.0},
+			{"type": "Squirrel", "delay": 5.0}
 		],
 		2: [
-			{"type": "Squirrel", "delay": 10.0},
+			{"type": "Squirrel", "delay": 4.0},
+			{"type": "Squirrel", "delay": 5.0},
+			{"type": "Squirrel", "delay": 5.0}
 
 		],
 		3: [
-			{"type": "Squirrel", "delay": 5.0},
+			{"type": "Squirrel", "delay": 21.0},
+			{"type": "Squirrel", "delay": 4.0},
+			{"type": "Squirrel", "delay": 4.0}
 
 		],
 		4: [
-			{"type": "Squirrel", "delay": 5.0},
+			{"type": "Squirrel", "delay": 25.0},
+			{"type": "Squirrel", "delay": 4.0},
+			{"type": "Squirrel", "delay": 4.0}
 
 		]
 	}
@@ -61,7 +74,7 @@ func get_spawner_data(spawner_id: String) -> Dictionary:
 	return {}
 
 func pop_enemy_for_spawner(spawner_id: String) -> Dictionary:
-	var id_as_int = int(spawner_id)  # Convert to int
+	var id_as_int = int(spawner_id)
 	if id_as_int in active_spawner_data:
 		var enemies = active_spawner_data[id_as_int]
 		if enemies.size() > 0:
@@ -73,3 +86,6 @@ func enemy_killed():
 	if enemies_alive <= 0:
 		get_tree().get_first_node_in_group("player").canMove = false
 		SceneManager.change_gui_scene("res://GUI/UpgradeMenu/UpgradeMenu.tscn")
+		#if current_wave % 5 == 0:
+		#else:
+			#start_wave(current_wave+1)
