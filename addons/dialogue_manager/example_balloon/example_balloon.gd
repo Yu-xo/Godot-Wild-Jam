@@ -180,5 +180,6 @@ func _on_dialogue_label_spoke(letter, letter_index, speed):
 	if not audio_stream_player.stream or letter in ["."," ", "(", ")"]:
 		return
 	audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+	audio_stream_player.volume_db *= 0.8
 	audio_stream_player.play()
 #endregion

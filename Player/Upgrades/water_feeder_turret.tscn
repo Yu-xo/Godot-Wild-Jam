@@ -42,10 +42,10 @@ radius = 2.91804
 script = ExtResource("1_4nvq6")
 shooting_range = 60.0
 rotation_speed = 10.0
+fire_rate = 0.8
 bullet_scene = ExtResource("2_2dt83")
 scrap_popup = ExtResource("3_vxdfs")
-build_cost = 50
-scrap_feed_rate = 0.1
+scrap_feed_rate = 0.05
 
 [node name="Top" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.927611, 0, 0, 0, 0.900331, 0, 0, 0, 0.734905, 0, 2.4802, 0)

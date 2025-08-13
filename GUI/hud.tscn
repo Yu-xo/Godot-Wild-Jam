@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtjmo571xg2mh"]
+[gd_scene load_steps=6 format=3 uid="uid://dtjmo571xg2mh"]
 
 [ext_resource type="Script" uid="uid://djjs8qeocrt0e" path="res://Level/hud.gd" id="1_15n47"]
+[ext_resource type="FontFile" uid="uid://bdx23dyf5j8ib" path="res://GUI/Font/EagleLake-Regular.ttf" id="2_36ch1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_15n47"]
 bg_color = Color(0.534374, 0, 0.124257, 1)
@@ -32,24 +33,35 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 70
-theme_override_constants/margin_top = 70
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
-custom_minimum_size = Vector2(1777.61, 0)
 layout_mode = 2
-size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_constants/separation = 1340
+theme_override_constants/separation = 3445
 
 [node name="ProgressBar" type="ProgressBar" parent="Control/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(394.565, 86.39)
+custom_minimum_size = Vector2(394.565, 101.59)
 layout_mode = 2
 theme = SubResource("Theme_15n47")
 
-[node name="ScrapCount" type="Label" parent="Control/MarginContainer/HBoxContainer"]
+[node name="ScrapCount" type="Label" parent="Control/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_36ch1")
 theme_override_font_sizes/font_size = 66
 horizontal_alignment = 1
+
+[node name="WaveCount" type="Label" parent="Control/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_36ch1")
+theme_override_font_sizes/font_size = 66
+text = "Wave "

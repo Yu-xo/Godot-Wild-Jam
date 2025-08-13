@@ -482,7 +482,7 @@ var _tween_skip: bool = false
 ## This is only used for when [member follow_mode] is set to [param Framed].
 var _follow_framed_initial_set: bool = false
 
-static var _draw_limits: bool = false
+var _draw_limits: bool = false
 
 var _limit_sides: Vector4i = _limit_sides_default
 var _limit_sides_default: Vector4i = Vector4i(-10000000, -10000000, 10000000, 10000000)

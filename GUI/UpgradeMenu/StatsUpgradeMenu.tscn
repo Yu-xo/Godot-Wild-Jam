@@ -1,0 +1,148 @@
+[gd_scene load_steps=10 format=3 uid="uid://dtdhqbpfvdn30"]
+
+[ext_resource type="Script" uid="uid://cyj38k41moohn" path="res://GUI/UpgradeMenu/stats_upgrade_menu.gd" id="1_dxwpl"]
+[ext_resource type="FontFile" uid="uid://bdx23dyf5j8ib" path="res://GUI/Font/EagleLake-Regular.ttf" id="2_q0cg1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbbyl"]
+
+[sub_resource type="Theme" id="Theme_s3f33"]
+Button/font_sizes/font_size = 40
+PanelContainer/styles/panel = SubResource("StyleBoxEmpty_tbbyl")
+VBoxContainer/constants/separation = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_27lhk"]
+font_size = 71
+
+[sub_resource type="Theme" id="Theme_peb0c"]
+default_font = ExtResource("2_q0cg1")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_15n47"]
+bg_color = Color(0.534374, 0, 0.124257, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_36ch1"]
+bg_color = Color(0.192241, 0.643653, 0, 1)
+
+[sub_resource type="Theme" id="Theme_15n47"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_15n47")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_36ch1")
+
+[node name="StatsUpgradeMenu" type="CanvasLayer"]
+layer = 3
+follow_viewport_enabled = true
+script = ExtResource("1_dxwpl")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_s3f33")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 70
+
+[node name="Label" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_q0cg1")
+text = "Wave Completed!"
+label_settings = SubResource("LabelSettings_27lhk")
+horizontal_alignment = 1
+
+[node name="Skip" type="Button" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_q0cg1")
+text = "Skip To Next Wave"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 175
+alignment = 1
+
+[node name="Option1" type="Button" parent="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 575)
+layout_mode = 2
+theme = SubResource("Theme_peb0c")
+theme_override_constants/outline_size = 1
+text = "Upgrade1"
+autowrap_mode = 3
+
+[node name="Option2" type="Button" parent="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme = SubResource("Theme_peb0c")
+text = "Upgrade2"
+autowrap_mode = 3
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="HUD"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/Control"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 70
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Control/MarginContainer"]
+custom_minimum_size = Vector2(1777.61, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 1340
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD/Control/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(394.565, 86.39)
+layout_mode = 2
+theme = SubResource("Theme_15n47")
+
+[node name="ScrapCount" type="Label" parent="HUD/Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 66
+horizontal_alignment = 1
+
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
+[connection signal="pressed" from="Control/PanelContainer/MarginContainer/VBoxContainer/Skip" to="." method="_on_skip_pressed"]
+[connection signal="mouse_entered" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Option1" to="." method="_on_option_1_mouse_entered"]
+[connection signal="mouse_exited" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Option1" to="." method="_on_option_1_mouse_exited"]
+[connection signal="pressed" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Option1" to="." method="_on_option_1_pressed"]
+[connection signal="mouse_entered" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Option2" to="." method="_on_option_2_mouse_entered"]
+[connection signal="mouse_exited" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Option2" to="." method="_on_option_2_mouse_exited"]
+[connection signal="pressed" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Option2" to="." method="_on_option_2_pressed"]

@@ -4,12 +4,15 @@
 
 [sub_resource type="SystemFont" id="SystemFont_b2deg"]
 font_names = PackedStringArray("Eagle Lake")
+subpixel_positioning = 0
 
 [node name="DamagePopup" type="Node3D"]
 script = ExtResource("1_my708")
-float_speed = 4.0
+float_speed = 10.0
+horizontal_drift = 4.0
 
 [node name="Label3D" type="Label3D" parent="."]
 billboard = 1
+no_depth_test = true
 font = SubResource("SystemFont_b2deg")
-font_size = 500
+font_size = 390

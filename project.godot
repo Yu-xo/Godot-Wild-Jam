@@ -26,7 +26,7 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [dialogue_manager]
 
-runtime/balloon_path="uid://w8dkjv5j78hi"
+runtime/balloon_path="uid://cu5qdkpkx5c7f"
 runtime/state_autoload_shortcuts=["WaveState"]
 
 [display]

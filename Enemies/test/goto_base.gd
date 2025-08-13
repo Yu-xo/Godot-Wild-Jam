@@ -4,7 +4,7 @@ extends State
 
 
 func Enter():
-	pass
+	test_enemy.in_range = false
 	
 func Exit():
 	pass
@@ -20,7 +20,7 @@ func Update(delta):
 	dir.y = 0
 	var dist = dir.length()
 
-	if dist > 0.1:
+	if dist > 0.5:
 		dir = dir.normalized()
 		
 		test_enemy.look_at(Vector3(base_pos.x, enemy_pos.y, base_pos.z), Vector3.UP)

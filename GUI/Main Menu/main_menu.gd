@@ -25,3 +25,6 @@ func switch_scene():
 	var gamecam = get_tree().get_first_node_in_group("gamecam")
 	gamecam.priority = 2
 	SceneManager.change_gui_scene("res://GUI/hud.tscn")
+
+func _on_quit_pressed():
+	get_tree().quit(0)

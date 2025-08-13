@@ -12,6 +12,7 @@ var just_swapped_cams = false
 var allow_marker_move = false
 
 var scrap = 0
+var crit_chance = 0.05
 
 func _ready(): 
 	canMove = false

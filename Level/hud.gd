@@ -2,7 +2,8 @@ extends CanvasLayer
 
 @onready var progress_bar = %ProgressBar
 @onready var control = $Control
-@onready var scrap_count = $Control/MarginContainer/HBoxContainer/ScrapCount
+@onready var scrap_count = %ScrapCount
+@onready var wave_count =%WaveCount
 var cage
 var player
 var fading_in := true
@@ -20,7 +21,7 @@ func _process(delta):
 		progress_bar.value = cage.currhp
 	if player:
 		scrap_count.text = str(player.scrap)
-
+	wave_count.text = str("Wave ", WaveState.current_wave)
 	if fading_in:
 		control.modulate = control.modulate.lerp(Color(1, 1, 1, 1), delta * 2)
 		if control.modulate.a > 0.99:

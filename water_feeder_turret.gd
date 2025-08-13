@@ -18,7 +18,7 @@ var is_built := false
 var current_target : Node3D = null
 var enemies := []
 var fire_timer := 0.0
-var player: Node = null
+var player
 var scrap_timer := 0.0
 
 var tick_sfx = "res://Player/Upgrades/barley_talksfx.wav"
@@ -62,14 +62,14 @@ func _process(delta):
 	else:
 		_reset_turret()
 
-func deposit_scrap(amount: int, player):
+func deposit_scrap(amount: int, player_in_range):
 	if is_built:
 		return
 	if player.scrap <= 0:
 		return
 
-	var give_amount = min(amount, player.scrap, build_cost - build_progress)
-	player.scrap -= give_amount
+	var give_amount = min(amount, player_in_range.scrap, build_cost - build_progress)
+	player_in_range.scrap -= give_amount
 	build_progress += give_amount
 
 	if scrap_popup:

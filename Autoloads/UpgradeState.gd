@@ -1,10 +1,14 @@
 extends Node
 
 var current_upgrades: Array = []
+var upgrade_counts: Dictionary = {}
 
 var available_upgrades: Array = [
 	{"name": "Twig Slingshot", "type": "weapon", "description": "Blueprints for a makeshift slingshot, made of a rubber band and a sturdy twig."},
-	{"name": "Water Feeder Turret", "type": "defense", "description": "Blueprints to turn Bipster's water feeder into a high pressure turret!"}
+	{"name": "Water Feeder Turret", "type": "defense", "description": "Blueprints to turn Bipster's water feeder into a high pressure turret!"},
+	{"name": "Crit Chance Boost", "type": "stat", "stat": "crit_chance", "value": 0.05, "description": "Increase your crit chance by 5%!"},
+	{"name": "Move Speed Boost", "type": "stat", "stat": "move_speed", "value": 0.2, "description": "Increase your movement speed!"},
+	{"name": "Repair Cage HP Boost", "type": "stat", "stat": "repair_cage_hp", "value": 50, "description": "Repair cage's HP by 50!"}
 ]
 
 func has_upgrade(upgrade_name: String) -> bool:

@@ -16,12 +16,12 @@ collision_mask = 3
 script = ExtResource("1_2i4cl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02062, 0)
+transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, 0, 2.12482, 0)
 layers = 2
 mesh = SubResource("CapsuleMesh_mu4ye")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02062, 0)
+transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, 0, 2.12482, 0)
 shape = SubResource("CylinderShape3D_x2dkn")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "object")]
