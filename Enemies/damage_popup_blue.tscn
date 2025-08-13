@@ -14,4 +14,4 @@ float_speed = 4.0
 billboard = 1
 modulate = Color(0.250558, 0.605808, 0.668656, 1)
 font = SubResource("SystemFont_b2deg")
-font_size = 500
+font_size = 250

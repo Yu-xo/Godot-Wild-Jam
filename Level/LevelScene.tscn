@@ -272,7 +272,7 @@ sway_amount = 0.5
 sway_limit = 0.4
 
 [node name="Camera3D" type="Camera3D" parent="CameraSpace/CameraMount"]
-transform = Transform3D(0.99164, -0.00651201, -0.12887, -0.00532695, 0.995809, -0.09131, 0.128924, 0.0912333, 0.987448, -3.4574, 3.94268, 3.31438)
+transform = Transform3D(0.99164, -0.00651197, -0.12887, -0.00532695, 0.995808, -0.0913101, 0.128924, 0.0912332, 0.987449, -3.4574, 3.94268, 3.31438)
 
 [node name="PhantomCameraHost" type="Node" parent="CameraSpace/CameraMount/Camera3D"]
 process_priority = 300
@@ -283,6 +283,7 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 [node name="GameCamMount" type="Node3D" parent="CameraSpace"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98023e-08, 3.17933, -2.05936)
 script = ExtResource("9_3mt6o")
+height_offset = 0.0
 
 [node name="GameViewCam" type="Node3D" parent="CameraSpace/GameCamMount" groups=["gamecam"]]
 unique_name_in_owner = true

@@ -77,7 +77,13 @@ func deposit_scrap(amount: int, player):
 		add_child(popup_instance)
 
 		popup_instance.global_transform.origin = global_transform.origin + Vector3(-5, 2, 0)
-
+		var random_offset = Vector3(
+			randf_range(-4, 4), 
+			0, 
+			randf_range(-4, 4)
+		)
+		popup_instance.global_position = global_position + Vector3(0, 2, 0) + random_offset
+		
 		var label = popup_instance.get_node("Label3D") if popup_instance.has_node("Label3D") else null
 		if label:
 			label.text = str(build_progress) + " / " + str(build_cost)
