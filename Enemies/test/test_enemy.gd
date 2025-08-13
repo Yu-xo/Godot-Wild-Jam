@@ -6,11 +6,13 @@ const DAMAGE_POPUP = preload("res://Enemies/damage_popup.tscn")
 @export var maxhp: float = 15
 var currhp
 var base
+var player
 var in_range = false
 
 func _ready():
 	currhp = maxhp
 	await get_tree().process_frame
+	player = get_tree().get_first_node_in_group("player")
 	base = get_tree().get_first_node_in_group("base")
 
 func _process(delta):
@@ -24,6 +26,7 @@ func take_dmg(amount):
 		#TODO switch with death anim then queue free
 		WaveState.enemy_killed()
 		queue_free()
+		player.scrap += randi_range(3, 6)
 	else:
 		currhp -= amount
 

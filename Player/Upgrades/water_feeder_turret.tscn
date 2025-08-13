@@ -1,24 +1,72 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckx2mkygsfgou"]
+[gd_scene load_steps=11 format=4 uid="uid://ckx2mkygsfgou"]
 
 [ext_resource type="Script" uid="uid://i8pmg5f6v2l0" path="res://water_feeder_turret.gd" id="1_4nvq6"]
 [ext_resource type="PackedScene" uid="uid://bns0xnmmx0lfm" path="res://Player/PlayerStates/Projectiles/TurretPellet.tscn" id="2_2dt83"]
+[ext_resource type="PackedScene" uid="uid://cawar5uplg8se" path="res://Enemies/damage_popup_blue.tscn" id="3_vxdfs"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2dt83"]
 size = Vector3(1.825, 4.635, 2.74)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2dt83"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.501961)
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_vxdfs"]
 bottom_radius = 0.175
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vxdfs"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.262745)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_24ejw"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_3jwle"]
+_surfaces = [{
+"aabb": AABB(-0.941368, -2.34637, -1.39887, 1.88274, 4.69274, 2.79773),
+"attribute_data": PackedByteArray("AAAAAAAAAACrqio/AAAAAKuqqj4AAAAAAACAPwAAAAAAAAAAAAAAP6uqKj8AAAA/q6qqPgAAAD8AAIA/AAAAP6uqqj4AAAAAAAAAAAAAAD+rqio/AAAAAKuqqj4AAAA/q6qqPgAAAD8AAAAAAACAP6uqKj8AAAA/q6qqPgAAgD+rqqo+AAAAP6uqKj8AAAA/q6oqPwAAAD8AAIA/AAAAP6uqqj4AAIA/q6oqPwAAgD+rqio/AACAPwAAgD8AAIA/"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAAEAAIAAgAEAAYAAQAFAAMAAwAFAAcACAAMAAoACgAMAA4ACQANAAsACwANAA8AEAAUABIAEgAUABYAEQAVABMAEwAVABcA"),
+"material": SubResource("StandardMaterial3D_24ejw"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("dv1wv+MqFkAXDrM/dv1wP+MqFkAXDrO/dv1wP+MqFkAXDrM/dv1wv+MqFkAXDrO/dv1wv+MqFsAXDrM/dv1wP+MqFsAXDrO/dv1wP+MqFsAXDrM/dv1wv+MqFsAXDrO/dv1wP+MqFkAXDrM/dv1wv+MqFkAXDrO/dv1wP+MqFkAXDrO/dv1wv+MqFkAXDrM/dv1wP+MqFsAXDrM/dv1wv+MqFsAXDrO/dv1wP+MqFsAXDrO/dv1wv+MqFsAXDrM/dv1wP+MqFkAXDrM/dv1wv+MqFsAXDrM/dv1wv+MqFkAXDrM/dv1wP+MqFsAXDrM/dv1wP+MqFkAXDrO/dv1wv+MqFsAXDrO/dv1wv+MqFkAXDrO/dv1wP+MqFsAXDrO//3//f////7//////AAD/v/9//3////+//////wAA/7//f/9/////v/////8AAP+//3//f////7//////AAD/v///AID/////AAAAgP9//7///wCA/////wAAAID/f/+///8AgP////8AAACA/3//v///AID/////AAAAgP9//78AgP//AAD/vwCAAAD///+/AID//wAA/78AgAAA////vwCA//8AAP+/AIAAAP///78AgP//AAD/vwCAAAD///+/")
+}]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2dt83"]
+radius = 2.91804
 
 [node name="WaterFeederTurret" type="Node3D"]
 script = ExtResource("1_4nvq6")
 shooting_range = 60.0
 rotation_speed = 10.0
 bullet_scene = ExtResource("2_2dt83")
+scrap_popup = ExtResource("3_vxdfs")
+build_cost = 50
+scrap_feed_rate = 0.1
 
 [node name="Top" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.927611, 0, 0, 0, 0.900331, 0, 0, 0, 0.734905, 0, 2.4802, 0)
 mesh = SubResource("BoxMesh_2dt83")
+surface_material_override/0 = SubResource("StandardMaterial3D_2dt83")
 
-[node name="base" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1.98431e-08, 3.432e-08, -0.734905, -0.735755, 0.548299, 2.95298e-08, 0.564912, 0.714118, 1.26461e-08, 0.00428903, 0.245322, -0.638696)
+[node name="base" type="MeshInstance3D" parent="Top"]
+transform = Transform3D(-2.13916e-08, 3.69983e-08, -0.792256, -0.817205, 0.608997, 3.27988e-08, 0.768687, 0.971715, 1.72078e-08, 0.00462374, -2.48229, -0.869087)
 mesh = SubResource("CylinderMesh_vxdfs")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_vxdfs")
+
+[node name="nearby" type="MeshInstance3D" parent="Top"]
+visible = false
+mesh = SubResource("ArrayMesh_3jwle")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.90834, 0)
+shape = SubResource("SphereShape3D_2dt83")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dw8pvbd1ifdjt"]
+[gd_scene load_steps=5 format=3 uid="uid://dw8pvbd1ifdjt"]
 
 [ext_resource type="Script" uid="uid://d4c1xynlsyn0l" path="res://Main/main.gd" id="1_k3v36"]
 [ext_resource type="Script" uid="uid://dxs4ulxon2cis" path="res://Main/SceneManager/scene_manager.gd" id="1_yh5la"]
 [ext_resource type="PackedScene" uid="uid://dnhogx6ov1y71" path="res://Main/SceneManager/fade_control.tscn" id="2_2w1kt"]
+[ext_resource type="PackedScene" uid="uid://d3ulk2aohy2cu" path="res://Level/LevelScene.tscn" id="3_eunhr"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_k3v36")
@@ -28,9 +29,12 @@ starting_gui_scene = "res://GUI/Main Menu/MainMenu.tscn"
 [node name="WorldSpace" type="Node3D" parent="SubViewportContainer/SubViewport/SceneManager"]
 unique_name_in_owner = true
 
+[node name="Level" parent="SubViewportContainer/SubViewport/SceneManager/WorldSpace" instance=ExtResource("3_eunhr")]
+
 [node name="GUI" type="CanvasLayer" parent="SubViewportContainer/SubViewport/SceneManager"]
 unique_name_in_owner = true
 
 [node name="FadeControl" parent="SubViewportContainer/SubViewport/SceneManager" instance=ExtResource("2_2w1kt")]
 unique_name_in_owner = true
 layer = 2
+visible = false

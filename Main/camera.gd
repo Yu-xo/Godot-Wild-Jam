@@ -4,7 +4,8 @@ extends Node3D
 @export var sway_speed: float = 5.0 
 @export var sway_limit: float = 0.1
 @onready var phantom_camera_host = $Camera3D/PhantomCameraHost
-@onready var game_view_cam = $"../GameCamMount/GameViewCam"
+@onready var game_view_cam = %GameViewCam
+
 const A_HAMSTERS_RESOLVE = preload("res://Music/a hamster's resolve.wav")
 var target_offset := Vector3.ZERO
 var default_position := Vector3.ZERO
@@ -31,7 +32,7 @@ func _ready():
 func _process(delta):
 	var switched_cam := false
 
-	if game_view_cam.is_active() and not player.canMove and not has_switched:
+	if game_view_cam && game_view_cam.is_active() and not player.canMove and not has_switched:
 		has_switched = true
 		current_cam = phantom_camera_host.get_active_pcam()
 		default_position = current_cam.position
@@ -39,7 +40,7 @@ func _process(delta):
 		switched_cam = true
 		await get_tree().create_timer(game_view_cam.tween_duration).timeout
 		player.canMove = true
-		AudioManager.play_music(A_HAMSTERS_RESOLVE, true, 0.0)
+		AudioManager.play_music(A_HAMSTERS_RESOLVE, true, 0.0, 65.0)
 
 	var viewport_size = get_viewport().get_visible_rect().size
 	var mouse_pos = get_viewport().get_mouse_position()

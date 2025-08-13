@@ -3,11 +3,12 @@ extends Node3D
 @export var speed = 15.0
 @export var lifetime = 5.0
 @export var projectile_sfx: String
+@export var volume = 100.0
 var velocity = Vector3.ZERO
 var life_timer = 0.0
 
 func _ready():
-	AudioManager.play_sound(projectile_sfx, "SFX", 120.0)
+	AudioManager.play_sound(projectile_sfx, "SFX", volume)
 	life_timer = lifetime
 
 func _process(delta):

@@ -11,7 +11,7 @@ var menu_camera
 var just_swapped_cams = false
 var allow_marker_move = false
 
-var scrap = 0.0
+var scrap = 0
 
 func _ready(): 
 	canMove = false

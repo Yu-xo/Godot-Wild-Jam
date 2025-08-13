@@ -24,22 +24,32 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="Control"]
-unique_name_in_owner = true
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 70
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
+custom_minimum_size = Vector2(1777.61, 0)
 layout_mode = 2
-offset_left = 26.0
-offset_top = 78.0
-offset_right = 316.0
-offset_bottom = 126.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 1340
+
+[node name="ProgressBar" type="ProgressBar" parent="Control/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(394.565, 86.39)
+layout_mode = 2
 theme = SubResource("Theme_15n47")
 
-[node name="Label" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 1.0
-offset_right = 213.0
-offset_bottom = 50.0
-theme_override_font_sizes/font_size = 51
-text = "Cage Health"
+[node name="ScrapCount" type="Label" parent="Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 66
 horizontal_alignment = 1
-vertical_alignment = 1

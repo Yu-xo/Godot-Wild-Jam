@@ -16,7 +16,7 @@ radius = 0.446289
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 script = ExtResource("1_3qydi")
-speed = 120.0
+speed = 140.0
 
 [node name="hamster" parent="." instance=ExtResource("2_6ysni")]
 
@@ -108,6 +108,6 @@ omni_range = 4.772
 omni_attenuation = 1.03
 
 [node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7102, 3.65846, 74.4885)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53535, 1.8386, 6.79648)
 
 [editable path="hamster"]

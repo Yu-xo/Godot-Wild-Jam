@@ -13,7 +13,6 @@ func _ready():
 	SceneManager.request_gui_scene_change.connect(_handle_gui_scene_change)
 	SceneManager.request_delete_current_gui_scene.connect(_handle_delete_current_gui_scene)
 	await get_tree().process_frame
-	SceneManager.change_3d_scene(starting_scene, true)
 	SceneManager.change_gui_scene(starting_gui_scene)
 	
 func _handle_3d_scene_change(scene_path: String, skip_fade_out: bool = false) -> void:

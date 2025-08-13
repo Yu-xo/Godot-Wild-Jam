@@ -82,10 +82,10 @@ near = 0.05
 far = 4000.0
 metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
-[sub_resource type="Resource" id="Resource_64v2o"]
+[sub_resource type="Resource" id="Resource_sbjr8"]
 script = ExtResource("3_3mt6o")
-duration = 2.5
-transition = 5
+duration = 1.0
+transition = 0
 ease = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_603no"]
@@ -281,13 +281,15 @@ script = ExtResource("6_42rcx")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="GameCamMount" type="Node3D" parent="CameraSpace"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.14584)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98023e-08, 3.17933, -2.05936)
 script = ExtResource("9_3mt6o")
 
 [node name="GameViewCam" type="Node3D" parent="CameraSpace/GameCamMount" groups=["gamecam"]]
-transform = Transform3D(1, 0, 0, 0, 0.907961, 0.419056, 0, -0.419056, 0.907961, 0, 15.2551, 26.8045)
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.922329, 0.386405, 0, -0.386405, 0.922329, -2.98023e-08, 14.5749, 26.4756)
 script = ExtResource("2_1jd1c")
-tween_resource = SubResource("Resource_64v2o")
+priority = 1
+tween_resource = SubResource("Resource_sbjr8")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Cage" parent="." instance=ExtResource("8_c0obw")]
