@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://club8vl0n7wdx"]
+[gd_scene load_steps=28 format=4 uid="uid://club8vl0n7wdx"]
 
 [ext_resource type="Script" uid="uid://d58cuxdqr5u0" path="res://Level/Cage/base.gd" id="1_p8rau"]
 [ext_resource type="PackedScene" uid="uid://ckx2mkygsfgou" path="res://Player/Upgrades/water_feeder_turret.tscn" id="2_44u3t"]
@@ -232,12 +232,14 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ebmal"]
 resource_name = "Paper shreds"
 cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
 albedo_texture = ExtResource("2_71l00")
-metallic_texture = ExtResource("3_akito")
 metallic_texture_channel = 2
-roughness_texture = ExtResource("3_akito")
+roughness = 0.0
 roughness_texture_channel = 1
 normal_texture = ExtResource("2_71l00")
+uv1_triplanar = true
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_tk5uj"]
 _surfaces = [{
@@ -272,16 +274,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_tk5uj")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44u3t"]
-diffuse_mode = 3
-specular_mode = 1
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("2_71l00")
-roughness = 0.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c5htl"]
-next_pass = SubResource("StandardMaterial3D_44u3t")
 
 [node name="Base" type="Node3D" groups=["base"]]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
@@ -337,7 +329,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_8n3xo")
 transform = Transform3D(0.208814, 0, 0, 0, 0.21477, 0, 0, 0, 0.21477, -0.00298035, 0.0113023, -0.0361135)
 mesh = SubResource("ArrayMesh_qdq1u")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_c5htl")
 
 [node name="WaterFeederSpawn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.94357, 1.46323, -1.6711)
