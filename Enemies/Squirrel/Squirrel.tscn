@@ -7,8 +7,7 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mu4ye"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_x2dkn"]
-radius = 0.51123
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xdblf"]
 
 [node name="Squirrel" type="CharacterBody3D" groups=["enemy"]]
 collision_layer = 2
@@ -23,7 +22,7 @@ mesh = SubResource("CapsuleMesh_mu4ye")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, 0, 2.12482, 0)
-shape = SubResource("CylinderShape3D_x2dkn")
+shape = SubResource("CapsuleShape3D_xdblf")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "object")]
 script = ExtResource("2_q4rh8")

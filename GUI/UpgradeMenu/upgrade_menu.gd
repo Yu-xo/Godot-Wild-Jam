@@ -13,11 +13,11 @@ func _ready():
 
 func _select_two_unique_types():
 	# special case for wave 25
-	if WaveState.current_wave == 30:
+	if WaveState.current_wave == 20:
 		option_1 = {
 			"name": "Firework Rocket",
 			"description": "The ticket out of here",
-			"cost": 2500
+			"cost": 2000
 		}
 		option_1_button.visible = true
 		option_1_button.disabled = false

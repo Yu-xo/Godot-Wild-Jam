@@ -29,8 +29,8 @@ var wave_config := {
 }
 
 var enemy_types := {
-	"Squirrel": {"weight": 10, "min_wave": 1}
-	#"Rabbit": {"weight": 8, "min_wave": 2},
+	#"Squirrel": {"weight": 10, "min_wave": 1},
+	"Skunk": {"weight": 10, "min_wave": 1}
 }
 
 func generate_wave_data(wave_number: int) -> Dictionary:

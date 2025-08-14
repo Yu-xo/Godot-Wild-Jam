@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://b25kbpk8w7kap"]
+
+[ext_resource type="Script" uid="uid://btg2atao6kvsu" path="res://Enemies/Skunk/Skunk.gd" id="1_1jjyx"]
+[ext_resource type="Script" uid="uid://yqvr0idmn0b" path="res://StateMachine/state_machine.gd" id="2_sv3wy"]
+[ext_resource type="Script" uid="uid://b46nbayt85so6" path="res://Enemies/Squirrel/goto_base.gd" id="3_pkrt4"]
+[ext_resource type="Script" uid="uid://dj0sykcxfdm45" path="res://Enemies/Squirrel/attack.gd" id="4_hcygw"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mu4ye"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5b146"]
+albedo_color = Color(0.209493, 0.0563618, 0.0628767, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1jjyx"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1jjyx"]
+radius = 8.43133
+
+[node name="Skunk" type="CharacterBody3D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_1jjyx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, 0.0207057, 2.12482, -0.00186539)
+layers = 2
+mesh = SubResource("CapsuleMesh_mu4ye")
+surface_material_override/0 = SubResource("StandardMaterial3D_5b146")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, 0, 2.12482, 0)
+shape = SubResource("CapsuleShape3D_1jjyx")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "object")]
+script = ExtResource("2_sv3wy")
+initial_state = NodePath("GotoBase")
+object = NodePath("..")
+
+[node name="GotoBase" type="Node" parent="StateMachine"]
+script = ExtResource("3_pkrt4")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("4_hcygw")
+
+[node name="AttackTimer" type="Timer" parent="StateMachine/Attack"]
+wait_time = 4.3
+
+[node name="PelletEntered" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PelletEntered"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20104, 0)
+shape = SubResource("SphereShape3D_1jjyx")
+
+[connection signal="timeout" from="StateMachine/Attack/AttackTimer" to="StateMachine/Attack" method="_on_attack_timer_timeout"]
+[connection signal="area_entered" from="PelletEntered" to="StateMachine/GotoBase" method="_on_pellet_entered_area_entered"]

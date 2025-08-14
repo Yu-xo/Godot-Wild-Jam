@@ -1,9 +1,10 @@
-[gd_scene load_steps=38 format=4 uid="uid://d3ulk2aohy2cu"]
+[gd_scene load_steps=39 format=4 uid="uid://d3ulk2aohy2cu"]
 
 [ext_resource type="PackedScene" uid="uid://bn2kes04t1rw7" path="res://Player/Player.tscn" id="1_5l2ho"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_1jd1c"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_3mt6o"]
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="4_b023d"]
+[ext_resource type="PackedScene" uid="uid://b25kbpk8w7kap" path="res://Enemies/Skunk/Skunk.tscn" id="4_jo1dq"]
 [ext_resource type="Script" uid="uid://4rle3ndvp421" path="res://Main/camera.gd" id="5_f0wxp"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_42rcx"]
 [ext_resource type="PackedScene" uid="uid://wuncigv354tw" path="res://Enemies/Squirrel/Squirrel.tscn" id="7_6umj8"]
@@ -235,6 +236,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.26654, 24.6966)
 [node name="WaveSpawner" parent="." instance=ExtResource("8_1jd1c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.346, 1.88254, 14.87)
 enemy_scenes = {
+"Skunk": ExtResource("4_jo1dq"),
 "Squirrel": ExtResource("7_6umj8")
 }
 
@@ -242,6 +244,7 @@ enemy_scenes = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3635, 1.80721, 45.9358)
 spawner_id = "2"
 enemy_scenes = {
+"Skunk": ExtResource("4_jo1dq"),
 "Squirrel": ExtResource("7_6umj8")
 }
 
@@ -249,6 +252,7 @@ enemy_scenes = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.8398, 2.68117, -49.4059)
 spawner_id = "3"
 enemy_scenes = {
+"Skunk": ExtResource("4_jo1dq"),
 "Squirrel": ExtResource("7_6umj8")
 }
 
@@ -256,6 +260,7 @@ enemy_scenes = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.9818, 0.960754, -46.9018)
 spawner_id = "4"
 enemy_scenes = {
+"Skunk": ExtResource("4_jo1dq"),
 "Squirrel": ExtResource("7_6umj8")
 }
 
@@ -263,6 +268,7 @@ enemy_scenes = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10684, 1.47839, -59.8709)
 spawner_id = "5"
 enemy_scenes = {
+"Skunk": ExtResource("4_jo1dq"),
 "Squirrel": ExtResource("7_6umj8")
 }
 
@@ -270,6 +276,7 @@ enemy_scenes = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.4907, 1.01243, 41.3789)
 spawner_id = "5"
 enemy_scenes = {
+"Skunk": ExtResource("4_jo1dq"),
 "Squirrel": ExtResource("7_6umj8")
 }
 

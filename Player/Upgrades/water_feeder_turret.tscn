@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=4 uid="uid://ckx2mkygsfgou"]
 
-[ext_resource type="Script" uid="uid://i8pmg5f6v2l0" path="res://water_feeder_turret.gd" id="1_4nvq6"]
+[ext_resource type="Script" uid="uid://i8pmg5f6v2l0" path="res://Player/Upgrades/water_feeder_turret.gd" id="1_4nvq6"]
 [ext_resource type="PackedScene" uid="uid://bns0xnmmx0lfm" path="res://Player/PlayerStates/Projectiles/WaterTurretPellet.tscn" id="2_2dt83"]
 [ext_resource type="PackedScene" uid="uid://cawar5uplg8se" path="res://Enemies/damage_popup_blue.tscn" id="3_vxdfs"]
 
