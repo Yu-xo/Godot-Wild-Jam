@@ -3,6 +3,7 @@ extends CharacterBody3D
 @onready var collision_shape = $CollisionShape3D
 @onready var gravity = ProjectSettings.get("physics/3d/default_gravity")
 @onready var marker_3d = $Marker3D
+@onready var interact_label = $InteractLabel
 
 @export var speed: float
 var rotation_speed = 10.0
@@ -11,7 +12,7 @@ var menu_camera
 var just_swapped_cams = false
 var allow_marker_move = false
 
-var scrap = 0
+var scrap = 200
 var crit_chance = 0.05
 
 func _ready(): 
@@ -29,7 +30,6 @@ func _process(delta):
 				allow_marker_move = false
 				start_marker_delay()
 
-			# Only move marker after delay
 			if allow_marker_move:
 				marker_3d.global_transform.origin = mouse_world_pos
 
@@ -62,3 +62,15 @@ func get_mouse_world_position_on_plane(y: float) -> Vector3:
 	if t < 0:
 		return Vector3.ZERO
 	return ray_origin + ray_dir * t
+
+func show_interact_button():
+	interact_label.show()
+	
+func hide_interact_button():
+	interact_label.hide()
+
+func toggle_interact_button():
+	var original_color = interact_label.modulate
+	var tween = create_tween()
+	tween.tween_property(interact_label, "modulate", Color(255, 255, 0), 0.15)
+	tween.tween_property(interact_label, "modulate", original_color, 0.15)

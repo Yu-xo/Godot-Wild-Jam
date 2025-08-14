@@ -184,7 +184,7 @@ func enemy_killed():
 		if cycle_position == 3:
 			SceneManager.change_gui_scene("res://GUI/UpgradeMenu/StatsUpgradeMenu.tscn")
 			get_tree().get_first_node_in_group("player").canMove = false
-		elif cycle_position == 5:
+		elif cycle_position == 5 && current_wave <= 30:
 			SceneManager.change_gui_scene("res://GUI/UpgradeMenu/UpgradeMenu.tscn")
 			get_tree().get_first_node_in_group("player").canMove = false
 		else:

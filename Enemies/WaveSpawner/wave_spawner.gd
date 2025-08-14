@@ -20,9 +20,20 @@ func _on_wave_started(wave_number: int):
 	
 	spawning = true
 	_spawn_wave_enemies()
+	
+func _get_ground_position(start_pos: Vector3) -> Vector3:
+	var ray_start = start_pos + Vector3.UP * 10.0
+	var ray_end = start_pos + Vector3.DOWN * 100.0
+	var space_state = get_world_3d().direct_space_state
+	var result = space_state.intersect_ray(PhysicsRayQueryParameters3D.create(ray_start, ray_end))
+	
+	if result.has("position"):
+		# Spawn slightly above ground to avoid collision overlap
+		return result["position"] + Vector3.UP * 0.5
+	return start_pos
+
 
 func _spawn_wave_enemies():
-	
 	while true:
 		var spawn_info = WaveState.pop_enemy_for_spawner(spawner_id)
 		
@@ -31,7 +42,6 @@ func _spawn_wave_enemies():
 		
 		var enemy_type = spawn_info.get("type")
 		var delay = spawn_info.get("delay")
-		
 		
 		if delay > 0:
 			await get_tree().create_timer(delay).timeout
@@ -45,10 +55,11 @@ func _spawn_wave_enemies():
 			add_child(enemy_instance)
 			enemy_instance.in_range = false
 			
-			if spawn_point:
-				enemy_instance.global_transform.origin = spawn_point.global_transform.origin + offset
-			else:
-				enemy_instance.global_transform.origin = global_transform.origin + offset
+			var spawn_origin = spawn_point.global_transform.origin if spawn_point else global_transform.origin
+			var base_pos = spawn_origin + offset
+			enemy_instance.global_transform.origin = _get_ground_position(base_pos)
+			
 		else:
 			push_warning("Spawner %s: Unknown enemy type: %s" % [spawner_id, enemy_type])
+	
 	spawning = false

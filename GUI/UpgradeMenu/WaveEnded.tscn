@@ -1,11 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://cibcj4vbh425"]
+[gd_scene load_steps=5 format=3 uid="uid://cibcj4vbh425"]
 
 [ext_resource type="Script" uid="uid://l3kwtim7s0i7" path="res://GUI/UpgradeMenu/wave_ended.gd" id="1_1omqy"]
+[ext_resource type="FontFile" uid="uid://bdx23dyf5j8ib" path="res://GUI/Font/EagleLake-Regular.ttf" id="2_58yc6"]
+[ext_resource type="Resource" uid="uid://mu00j2kvk6fp" path="res://Player/intro.dialogue" id="2_adyvl"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cjxpg"]
 
 [node name="WaveEnded" type="CanvasLayer"]
 script = ExtResource("1_1omqy")
+dialogue_resource = ExtResource("2_adyvl")
+dialogue_start = "post_round"
+talk_sound_path = "res://GUI/squeak_sfx.wav"
+pitch_range = Array[float]([0.9, 1.0])
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -38,6 +44,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 76.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_58yc6")
 theme_override_font_sizes/font_size = 76
 text = "Wave completed!"
 horizontal_alignment = 1

@@ -4,7 +4,7 @@ const DAMAGE_POPUP_CRIT = preload("res://Enemies/damage_popup_crit.tscn")
 const DAMAGE_POPUP = preload("res://Enemies/damage_popup.tscn")
 @export var damage: float = 5.0
 @export var speed: float = 5.0
-@export var maxhp: float = 15
+@export var maxhp: float = 20
 var currhp
 var base
 var player
@@ -17,6 +17,8 @@ func _ready():
 	base = get_tree().get_first_node_in_group("base")
 
 func _process(delta):
+	if global_position.y < -100:
+		take_dmg(999)
 	velocity.y -= ProjectSettings.get("physics/2d/default_gravity") * delta
 	move_and_slide()
 
@@ -33,7 +35,7 @@ func take_dmg(amount):
 		#TODO switch with death anim then queue free
 		WaveState.enemy_killed()
 		queue_free()
-		player.scrap += randi_range(2, 4)
+		player.scrap += randi_range(3, 5)
 	else:
 		currhp -= amount
 

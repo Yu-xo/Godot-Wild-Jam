@@ -7,3 +7,15 @@ The blueprints are still hazy *squeak*
 I need to buy time... *squeak*
 do switch_scene()
 => END
+
+~ post_round
+% I will escape! *squeak*
+% I have hope! *squeak*
+% My troubles will soon be over! *squeak*
+% This cage is a prison, this world too. *squeak*
+% Never back down never give up *squeak*
+% This air may have given me a conscious, but it is poison. *squeak*
+% I can create anything!
+% My escape plan is flawless!
+do new_round()
+=> END

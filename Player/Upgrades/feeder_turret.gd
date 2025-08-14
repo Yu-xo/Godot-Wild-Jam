@@ -5,30 +5,32 @@ extends Node3D
 @export var fire_rate := 1.0
 @export var bullet_scene: PackedScene
 @export var scrap_popup: PackedScene
-# Turret building variables
 @export var build_cost := 100
 @export var scrap_feed_rate := 0.2
-
 var build_progress := 0
 var is_built := false
 
-@onready var mesh = $Top
-@onready var base = $Top/base
-@onready var nearby = $Top/nearby
+@onready var mesh = $mesh
+@onready var nearby = $mesh/nearby
 
-var current_target : Node3D = null
+var current_target: Node3D = null
 var enemies := []
 var fire_timer := 0.0
 var player
 var scrap_timer := 0.0
 
+# Pellet shooting vars
+@export var pellet_speed := 20.0
+@export var pellet_damage := 3.0
+@export var angle_step := 45.0
+
+# SFX
 var tick_sfx = "res://Player/Upgrades/barley_talksfx.wav"
 var deposit_pitch := 1.0
-var pitch_step := 0.05 # How much to raise pitch per scrap deposit
+var pitch_step := 0.05
 
 func _ready():
 	_update_transparency()
-
 
 func _process(delta):
 	if player and not is_built:
@@ -48,21 +50,10 @@ func _process(delta):
 	if current_target:
 		_aim_at_target(delta)
 		_try_shoot(delta)
-	else:
-		_reset_turret()
 
-	if not is_built:
-		return
-
-	_update_enemies()
-	_select_target()
-	
-	if current_target:
-		_aim_at_target(delta)
-		_try_shoot(delta)
-	else:
-		_reset_turret()
-
+# ---------------------
+# Scrap/building logic
+# ---------------------
 func deposit_scrap(amount: int, player_in_range):
 	if is_built:
 		player.hide_interact_button()
@@ -111,9 +102,11 @@ func _finish_build():
 	is_built = true
 	build_progress = build_cost
 	mesh.get_surface_override_material(0).albedo_color.a = 1.0
-	base.get_surface_override_material(0).albedo_color.a = 1.0
 	_update_transparency()
 
+# ---------------------
+# Targeting/shooting
+# ---------------------
 func _update_enemies():
 	enemies = get_tree().get_nodes_in_group("enemy")
 
@@ -137,91 +130,68 @@ func _select_target():
 		current_target = closest_enemy
 
 func _aim_at_target(delta):
-	var to_target = (current_target.global_transform.origin - global_transform.origin).normalized()
-	var target_rotation = global_transform.basis.looking_at(to_target, Vector3.UP).get_euler()
-	var current_rotation = rotation
-	current_rotation.y = lerp_angle(current_rotation.y, target_rotation.y, rotation_speed * delta)
-	rotation = current_rotation
+	if not current_target:
+		return
+	var to_target = current_target.global_transform.origin - global_transform.origin
+	to_target.y = 0  # horizontal rotation only
+	to_target = to_target.normalized()
+	
+	var target_rotation_y = atan2(to_target.x, to_target.z)
+	var current_rotation_y = rotation.y
+	rotation.y = lerp_angle(current_rotation_y, target_rotation_y, rotation_speed * delta)
 
 func _try_shoot(delta):
 	fire_timer -= delta
 	if fire_timer <= 0.0:
 		fire_timer = 1.0 / fire_rate
-		_shoot()
-
-func _shoot():
+		_shoot_pellets()
+		
+func _shoot_pellets():
 	if bullet_scene == null:
 		print("No bullet scene assigned!")
 		return
 
-	var bullet_instance = bullet_scene.instantiate()
-	get_tree().current_scene.add_child(bullet_instance)
-	bullet_instance.global_transform.origin = global_transform.origin
+	# 1 pellet aimed directly at the target
+	if current_target:
+		var pellet = bullet_scene.instantiate()
+		get_tree().current_scene.add_child(pellet)
+		pellet.global_transform.origin = global_transform.origin
+		var direction = (current_target.global_transform.origin - global_transform.origin).normalized()
+		if pellet.has_method("set_velocity"):
+			pellet.set_velocity(direction * pellet_speed)
+		if pellet.has_method("set_damage"):
+			pellet.set_damage(pellet_damage)
+		pellet.look_at(pellet.global_transform.origin + direction, Vector3.UP)
 
-	var target_pos = current_target.global_transform.origin
-	var direction: Vector3
-
-	if current_target.has_method("get_velocity"):
-		var target_velocity = current_target.get_velocity()
-		var predicted_pos = calculate_lead_position(global_transform.origin, target_pos, target_velocity, bullet_instance.speed)
-
-		var speed = target_velocity.length()
-		if speed > 0.1:
-			var to_predicted = (predicted_pos - global_transform.origin).normalized()
-			var random_angle = randf_range(-0.05, 0.05)
-			var axis = to_predicted.cross(Vector3.UP)
-			if axis.length() < 0.01:
-				axis = Vector3.RIGHT
-			axis = axis.normalized()
-
-			var offset = axis.rotated(Vector3.UP, random_angle) * 1.0
-			var aim_point = predicted_pos + offset
-			direction = (aim_point - global_transform.origin).normalized()
-		else:
-			direction = (target_pos - global_transform.origin).normalized()
-	else:
-		direction = (target_pos - global_transform.origin).normalized()
-
-	bullet_instance.look_at(global_transform.origin + direction, Vector3.UP)
-
-	if bullet_instance.has_method("set_velocity"):
-		bullet_instance.set_velocity(direction * bullet_instance.speed)
-
-func calculate_lead_position(shooter_pos: Vector3, target_pos: Vector3, target_vel: Vector3, bullet_speed: float) -> Vector3:
-	var to_target = target_pos - shooter_pos
-	var a = target_vel.length_squared() - bullet_speed * bullet_speed
-	var b = 2.0 * to_target.dot(target_vel)
-	var c = to_target.length_squared()
-	var discriminant = b * b - 4 * a * c
-
-	if discriminant < 0 or abs(a) < 0.001:
-		return target_pos
-
-	var sqrt_disc = sqrt(discriminant)
-	var t1 = (-b + sqrt_disc) / (2 * a)
-	var t2 = (-b - sqrt_disc) / (2 * a)
-
-	var t = min(t1, t2)
-	if t < 0:
-		t = max(t1, t2)
-	if t < 0:
-		return target_pos
-
-	t = max(t, 0.1)
-	return target_pos + target_vel * t
+	# remaining pellets in spread
+	var rotation_offset = randf_range(0.0, 360.0)
+	for i in range(1, 8):
+		var pellet = bullet_scene.instantiate()
+		get_tree().current_scene.add_child(pellet)
+		pellet.global_transform.origin = global_transform.origin
+		var angle_rad = deg_to_rad(rotation_offset + (i * angle_step))
+		var direction = Vector3(sin(angle_rad), 0, cos(angle_rad)).normalized()
+		if pellet.has_method("set_velocity"):
+			pellet.set_velocity(direction * pellet_speed)
+		if pellet.has_method("set_damage"):
+			pellet.set_damage(pellet_damage)
+		pellet.look_at(pellet.global_transform.origin + direction, Vector3.UP)
 
 func _reset_turret():
 	pass
 
+# ---------------------
+# Player interaction
+# ---------------------
 func _on_area_3d_body_entered(body):
-	if body.is_in_group("player") && not is_built:
+	if body.is_in_group("player") and not is_built:
 		player = body
 		player.show_interact_button()
 		nearby.show()
 
 func _on_area_3d_body_exited(body):
 	if body == player:
+		player.hide_interact_button()
 		if not is_built:
-			player.hide_interact_button()
 			nearby.hide()
 		player = null

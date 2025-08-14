@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=4 uid="uid://club8vl0n7wdx"]
+[gd_scene load_steps=30 format=4 uid="uid://club8vl0n7wdx"]
 
 [ext_resource type="Script" uid="uid://d58cuxdqr5u0" path="res://Level/Cage/base.gd" id="1_p8rau"]
 [ext_resource type="PackedScene" uid="uid://ckx2mkygsfgou" path="res://Player/Upgrades/water_feeder_turret.tscn" id="2_44u3t"]
 [ext_resource type="Texture2D" uid="uid://csm6gmldncnu7" path="res://Level/Cage/Hamster Cage_buy-kaytee-clean-and-cozy-paper-bedding-12.webp" id="2_71l00"]
 [ext_resource type="Texture2D" uid="uid://d0pm2u0rieead" path="res://Level/Cage/Hamster Cage_buy-kaytee-clean-and-cozy-paper-bedding-12_1.png" id="3_akito"]
+[ext_resource type="PackedScene" uid="uid://clp08xl28dagm" path="res://Player/Upgrades/feeder_turret.tscn" id="3_c5htl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_duqeu"]
 resource_name = "Cage"
@@ -286,6 +287,7 @@ next_pass = SubResource("StandardMaterial3D_44u3t")
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_p8rau")
 water_feeder_turret = ExtResource("2_44u3t")
+pellet_feeder_turret = ExtResource("3_c5htl")
 
 [node name="Hamster Cage" type="Node3D" parent="."]
 transform = Transform3D(28, 0, 0, 0, 28, 0, 0, 0, 28, 0.825595, 0, 0)
@@ -339,3 +341,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_c5htl")
 
 [node name="WaterFeederSpawn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.94357, 1.46323, -1.6711)
+
+[node name="FeederSpawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.352, 0.3642, -4.00408)
+
+[node name="RocketSpawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.352, 0.3642, -4.00408)

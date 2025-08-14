@@ -12,6 +12,22 @@ func _ready():
 	_select_two_unique_types()
 
 func _select_two_unique_types():
+	# special case for wave 25
+	if WaveState.current_wave == 30:
+		option_1 = {
+			"name": "Firework Rocket",
+			"description": "The ticket out of here",
+			"cost": 2500
+		}
+		option_1_button.visible = true
+		option_1_button.disabled = false
+		option_1_button.text = option_1["name"]
+
+		option_2_button.visible = false
+		option_2_button.disabled = true
+		return
+
+	# normal upgrade selection
 	var upgrades = UpgradeState.list_available_upgrades().filter(
 		func(upgrade): return upgrade["type"] != "stat"
 	)
@@ -55,6 +71,7 @@ func _select_two_unique_types():
 
 	option_1_button.text = option_1["name"]
 	option_2_button.text = option_2["name"]
+
 	
 func _on_option_1_pressed():
 	UpgradeState.add_upgrade(option_1["name"] if option_1.has("name") else option_1["name"])

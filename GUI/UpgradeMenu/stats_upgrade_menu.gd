@@ -112,4 +112,6 @@ func _on_tree_exited():
 	WaveState.start_wave(WaveState.current_wave+1)
 
 func _on_skip_pressed():
+	player.canMove = true
+	AudioManager.remove_low_pass_filter_from_music()
 	SceneManager.change_gui_scene("res://GUI/hud.tscn")

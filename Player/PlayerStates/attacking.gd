@@ -33,7 +33,7 @@ var weapon_stats = {
 		"cooldown_multiplier": 0.9,
 		"force_multiplier": 1.1,
 		"height_multiplier": 0.9,
-		"damage": 6.0,
+		"damage": 8.0,
 		"projectile_scene": "slingshot_pellet"
 	},
 	WeaponType.BOW: {
@@ -41,7 +41,7 @@ var weapon_stats = {
 		"cooldown_multiplier": 0.8,
 		"force_multiplier": 3.0,
 		"height_multiplier": 0.7,
-		"damage": 8.0,
+		"damage": 6.0,
 		"projectile_scene": "toothpick"
 	}
 }
@@ -96,11 +96,11 @@ func get_fire_origin() -> Vector3:
 	
 	match current_weapon:
 		WeaponType.THROWING:
-			return base_pos + Vector3(0, 3.5, 0)  # Slightly higher for throwing
+			return base_pos + Vector3(0, 3.0, 0)  # Slightly higher for throwing
 		WeaponType.SLINGSHOT:
-			return base_pos + Vector3(0, 2.5, 0.3)  # Slightly forward and lower
+			return base_pos + Vector3(0, 2.5, 0.3)
 		WeaponType.BOW:
-			return base_pos + Vector3(0, 0.1, 0.5)  # More forward for bow draw
+			return base_pos + Vector3(0, 1.0, 0.5)
 	
 	return base_pos
 

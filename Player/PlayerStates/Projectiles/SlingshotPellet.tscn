@@ -11,8 +11,8 @@ data = PackedVector3Array(0, 0.4, 0, 0, 0.4, 0, 0, 0.3982, 0.0665, 0, 0.4, 0, 0.
 
 [node name="Pellet" type="Node3D"]
 script = ExtResource("1_61bxb")
-damage = 6.0
-speed = 25.0
+damage = 8.0
+speed = 18.0
 projectile_sfx = "res://Player/PlayerStates/Projectiles/pellet_throw_sfx.wav"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

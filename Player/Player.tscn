@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bn2kes04t1rw7"]
+[gd_scene load_steps=11 format=3 uid="uid://bn2kes04t1rw7"]
 
 [ext_resource type="Script" uid="uid://bncsb2e62uoe5" path="res://Player/player.gd" id="1_3qydi"]
 [ext_resource type="PackedScene" uid="uid://dxaocmgahyqph" path="res://Player/Model/hamster.glb" id="2_6ysni"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://clyoo81pcywhp" path="res://Player/PlayerStates/attacking.gd" id="5_s1rgi"]
 [ext_resource type="PackedScene" uid="uid://c4bldvssahiqd" path="res://Player/PlayerStates/Projectiles/SlingshotPellet.tscn" id="6_j23h2"]
 [ext_resource type="PackedScene" uid="uid://bs2mvdhbtrmg8" path="res://Player/PlayerStates/Projectiles/Pellet.tscn" id="6_s1rgi"]
+[ext_resource type="PackedScene" uid="uid://wce1tqhfhcr7" path="res://Player/PlayerStates/Projectiles/Arrow.tscn" id="7_j23h2"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tok1r"]
 height = 1.55347
@@ -85,6 +86,7 @@ script = ExtResource("5_s1rgi")
 base_throw_force = 30.0
 pellet_scene = ExtResource("6_s1rgi")
 slingshot_pellet_scene = ExtResource("6_j23h2")
+toothpick_arrow_scene = ExtResource("7_j23h2")
 
 [node name="MovementStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "object")]
 script = ExtResource("2_8g4oa")
@@ -109,5 +111,14 @@ omni_attenuation = 1.03
 
 [node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53535, 1.8386, 6.79648)
+
+[node name="InteractLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58946e-07, 1.17756, 0.820119)
+visible = false
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 1, 0, 1)
+text = "F"
+font_size = 237
 
 [editable path="hamster"]
