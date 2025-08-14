@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8odib00rscdp"]
+
+[ext_resource type="Texture2D" uid="uid://byqsnc6y8gb5x" path="res://Enemies/scrap.png" id="2_3yntj"]
+[ext_resource type="Script" uid="uid://bppjr7mtxcy3g" path="res://Enemies/scrap_popup.gd" id="2_fq2pn"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3yntj"]
+radius = 1.25562
+
+[node name="ScrapPopup" type="Node3D"]
+
+[node name="Area3D" type="Area3D" parent="."]
+script = ExtResource("2_fq2pn")
+speed = 30.0
+arc_height = 8.0
+homing_strength = 20.0
+
+[node name="Sprite3D" type="Sprite3D" parent="Area3D"]
+transform = Transform3D(0.445, 0, 0, 0, 0.445, 0, 0, 0, 0.445, 0, 0, 0)
+billboard = 1
+texture = ExtResource("2_3yntj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_3yntj")
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]

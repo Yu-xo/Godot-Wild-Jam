@@ -221,7 +221,7 @@ func _on_area_3d_body_entered(body):
 
 func _on_area_3d_body_exited(body):
 	if body == player:
+		player.hide_interact_button()
 		if not is_built:
-			player.hide_interact_button()
 			nearby.hide()
 		player = null

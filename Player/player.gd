@@ -12,7 +12,7 @@ var menu_camera
 var just_swapped_cams = false
 var allow_marker_move = false
 
-var scrap = 200
+var scrap = 100
 var crit_chance = 0.05
 
 func _ready(): 
@@ -24,7 +24,6 @@ func _process(delta):
 
 	if mouse_world_pos != null and mouse_world_pos != Vector3.ZERO:
 		if menu_camera and not menu_camera.is_active():
-			# Detect first time swap happens
 			if not just_swapped_cams:
 				just_swapped_cams = true
 				allow_marker_move = false

@@ -1,22 +1,33 @@
-[gd_scene load_steps=8 format=3 uid="uid://dr0c6g5bt3lin"]
+[gd_scene load_steps=11 format=3 uid="uid://dr0c6g5bt3lin"]
 
 [ext_resource type="Script" uid="uid://bh1lgsf3d1vo" path="res://GUI/UpgradeMenu/upgrade_menu.gd" id="1_xb8pu"]
-[ext_resource type="FontFile" uid="uid://bdx23dyf5j8ib" path="res://GUI/Font/EagleLake-Regular.ttf" id="2_27lhk"]
+[ext_resource type="FontFile" uid="uid://5i314bvu7m6" path="res://GUI/Font/dpcomic.ttf" id="2_27lhk"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbbyl"]
 
 [sub_resource type="Theme" id="Theme_s3f33"]
 Button/font_sizes/font_size = 40
+Button/fonts/font = ExtResource("2_27lhk")
 PanelContainer/styles/panel = SubResource("StyleBoxEmpty_tbbyl")
 VBoxContainer/constants/separation = 4
+
+[sub_resource type="Theme" id="Theme_qhjr8"]
+default_font = ExtResource("2_27lhk")
 
 [sub_resource type="LabelSettings" id="LabelSettings_27lhk"]
 font_size = 71
 
+[sub_resource type="Theme" id="Theme_3vxta"]
+default_font = ExtResource("2_27lhk")
+
+[sub_resource type="Theme" id="Theme_vcojp"]
+default_font = ExtResource("2_27lhk")
+
 [sub_resource type="Theme" id="Theme_xb8pu"]
+default_font = ExtResource("2_27lhk")
 
 [sub_resource type="Theme" id="Theme_27lhk"]
-Button/fonts/font = ExtResource("2_27lhk")
+default_font = ExtResource("2_27lhk")
 
 [node name="UpgradeMenu" type="CanvasLayer"]
 layer = 3
@@ -46,6 +57,7 @@ custom_minimum_size = Vector2(204.2, 246.91)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme = SubResource("Theme_qhjr8")
 
 [node name="Label" type="Label" parent="Control/PanelContainer/MarginContainer2"]
 layout_mode = 2
@@ -60,6 +72,7 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = SubResource("Theme_3vxta")
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
@@ -68,6 +81,7 @@ theme_override_constants/margin_bottom = 50
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 4
+theme = SubResource("Theme_vcojp")
 theme_override_constants/separation = 175
 alignment = 1
 

@@ -1,10 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cqxrwadhr78v5"]
 
 [ext_resource type="Script" uid="uid://qjb07sc3ghe6" path="res://Enemies/damage_popup_crit.gd" id="1_gggpp"]
-
-[sub_resource type="SystemFont" id="SystemFont_b2deg"]
-font_names = PackedStringArray("Eagle Lake")
-subpixel_positioning = 0
+[ext_resource type="FontFile" uid="uid://5i314bvu7m6" path="res://GUI/Font/dpcomic.ttf" id="2_beq4m"]
 
 [node name="DamagePopupCrit" type="Node3D"]
 script = ExtResource("1_gggpp")
@@ -17,5 +14,5 @@ billboard = 1
 no_depth_test = true
 modulate = Color(0.977723, 0.458579, 1.73271e-06, 1)
 outline_modulate = Color(1, 1, 1, 1)
-font = SubResource("SystemFont_b2deg")
+font = ExtResource("2_beq4m")
 font_size = 1000

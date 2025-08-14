@@ -4,9 +4,12 @@ extends CanvasLayer
 @onready var control = $Control
 @onready var scrap_count = %ScrapCount
 @onready var wave_count =%WaveCount
+@onready var exiting = %Exiting
 var cage
 var player
 var fading_in := true
+var exit_hold_time := 0.0
+var exit_duration := 2.5
 
 func _ready():
 	cage = get_tree().get_first_node_in_group("base")
@@ -27,3 +30,12 @@ func _process(delta):
 		if control.modulate.a > 0.99:
 			control.modulate = Color(1, 1, 1, 1)
 			fading_in = false
+	if Input.is_action_pressed("Quit"):
+		exit_hold_time += delta
+		var alpha = clamp(exit_hold_time / exit_duration, 0.0, 1.0)
+		exiting.modulate = exiting.modulate.lerp(Color(1, 1, 1, alpha), delta * 8)
+		if exit_hold_time >= exit_duration:
+			get_tree().quit()
+	else:
+		exit_hold_time = 0.0
+		exiting.modulate = exiting.modulate.lerp(Color(1, 1, 1, 0), delta * 8)

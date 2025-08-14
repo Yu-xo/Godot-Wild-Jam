@@ -1,19 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://cawar5uplg8se"]
 
 [ext_resource type="Script" uid="uid://be7w84nq7ul2w" path="res://Enemies/damage_popup.gd" id="1_rci4p"]
-
-[sub_resource type="SystemFont" id="SystemFont_b2deg"]
-font_names = PackedStringArray("Eagle Lake")
-subpixel_positioning = 0
+[ext_resource type="FontFile" uid="uid://5i314bvu7m6" path="res://GUI/Font/dpcomic.ttf" id="2_ihjsx"]
 
 [node name="DamagePopup" type="Node3D"]
 top_level = true
 script = ExtResource("1_rci4p")
-float_speed = 5.0
 
 [node name="Label3D" type="Label3D" parent="."]
 billboard = 1
 no_depth_test = true
 modulate = Color(0.250558, 0.605808, 0.668656, 1)
-font = SubResource("SystemFont_b2deg")
+font = ExtResource("2_ihjsx")
 font_size = 250

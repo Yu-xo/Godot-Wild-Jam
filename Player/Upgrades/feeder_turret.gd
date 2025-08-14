@@ -24,6 +24,8 @@ var scrap_timer := 0.0
 @export var pellet_damage := 3.0
 @export var angle_step := 45.0
 
+var pellet_rotation_angle := 0.0
+
 # SFX
 var tick_sfx = "res://Player/Upgrades/barley_talksfx.wav"
 var deposit_pitch := 1.0
@@ -50,7 +52,9 @@ func _process(delta):
 	if current_target:
 		_aim_at_target(delta)
 		_try_shoot(delta)
-
+		
+	pellet_rotation_angle += deg_to_rad(rotation_speed) * delta
+	
 # ---------------------
 # Scrap/building logic
 # ---------------------
@@ -150,32 +154,23 @@ func _shoot_pellets():
 	if bullet_scene == null:
 		print("No bullet scene assigned!")
 		return
-
-	# 1 pellet aimed directly at the target
-	if current_target:
-		var pellet = bullet_scene.instantiate()
-		get_tree().current_scene.add_child(pellet)
-		pellet.global_transform.origin = global_transform.origin
-		var direction = (current_target.global_transform.origin - global_transform.origin).normalized()
-		if pellet.has_method("set_velocity"):
-			pellet.set_velocity(direction * pellet_speed)
-		if pellet.has_method("set_damage"):
-			pellet.set_damage(pellet_damage)
-		pellet.look_at(pellet.global_transform.origin + direction, Vector3.UP)
-
-	# remaining pellets in spread
 	var rotation_offset = randf_range(0.0, 360.0)
-	for i in range(1, 8):
+	for i in range(0, 15):
 		var pellet = bullet_scene.instantiate()
 		get_tree().current_scene.add_child(pellet)
-		pellet.global_transform.origin = global_transform.origin
+		pellet.global_transform.origin = mesh.global_transform.origin
+
 		var angle_rad = deg_to_rad(rotation_offset + (i * angle_step))
-		var direction = Vector3(sin(angle_rad), 0, cos(angle_rad)).normalized()
+		var local_dir = Vector3(sin(angle_rad), 0, cos(angle_rad)).normalized()
+		var world_dir = mesh.global_transform.basis * local_dir
+
 		if pellet.has_method("set_velocity"):
-			pellet.set_velocity(direction * pellet_speed)
+			pellet.set_velocity(world_dir * pellet_speed)
 		if pellet.has_method("set_damage"):
 			pellet.set_damage(pellet_damage)
-		pellet.look_at(pellet.global_transform.origin + direction, Vector3.UP)
+		pellet.look_at(pellet.global_transform.origin + world_dir, Vector3.UP)
+		await get_tree().create_timer(0.05).timeout
+
 
 func _reset_turret():
 	pass

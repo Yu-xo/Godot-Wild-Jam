@@ -11,13 +11,18 @@ var velocity = Vector3.ZERO
 var life_timer = 0.0
 
 func _ready():
-	AudioManager.play_sound(projectile_sfx, "SFX", volume)
+	AudioManager.play_sound(projectile_sfx, "SFX", volume)		
 	life_timer = lifetime
 
 func _process(delta):
 	if velocity != Vector3.ZERO:
 		global_position += velocity * delta
+		
+		var right_dir = velocity.normalized().cross(Vector3.UP).normalized()
+		global_position += right_dir * 0.5 * delta
+		
 		rotate_y(deg_to_rad(spin_speed) * delta)
+	
 	life_timer -= delta
 	if life_timer <= 0:
 		queue_free()

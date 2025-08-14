@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://jagclcb7hvms"]
+[gd_scene load_steps=7 format=3 uid="uid://jagclcb7hvms"]
 
 [ext_resource type="Script" uid="uid://ci0njhlib4tgn" path="res://GUI/Main Menu/main_menu.gd" id="1_sdo8u"]
 [ext_resource type="Resource" uid="uid://mu00j2kvk6fp" path="res://Player/intro.dialogue" id="2_2rtx2"]
-[ext_resource type="FontFile" uid="uid://bdx23dyf5j8ib" path="res://GUI/Font/EagleLake-Regular.ttf" id="3_82pry"]
+[ext_resource type="FontFile" uid="uid://5i314bvu7m6" path="res://GUI/Font/dpcomic.ttf" id="3_82pry"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sdo8u"]
 
@@ -10,6 +10,9 @@
 Button/font_sizes/font_size = 40
 PanelContainer/styles/panel = SubResource("StyleBoxEmpty_sdo8u")
 VBoxContainer/constants/separation = 4
+
+[sub_resource type="Theme" id="Theme_msonn"]
+default_font = ExtResource("3_82pry")
 
 [node name="CanvasLayer" type="CanvasLayer"]
 layer = 3
@@ -48,17 +51,23 @@ theme_override_constants/separation = 55
 
 [node name="Start" type="Button" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = SubResource("Theme_msonn")
 theme_override_fonts/font = ExtResource("3_82pry")
+theme_override_font_sizes/font_size = 81
 text = "Start"
 
 [node name="Settings" type="Button" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = SubResource("Theme_msonn")
 theme_override_fonts/font = ExtResource("3_82pry")
+theme_override_font_sizes/font_size = 81
 text = "Settings"
 
 [node name="Quit" type="Button" parent="MainMenu/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = SubResource("Theme_msonn")
 theme_override_fonts/font = ExtResource("3_82pry")
+theme_override_font_sizes/font_size = 81
 text = "Quit"
 
 [connection signal="pressed" from="MainMenu/PanelContainer/MarginContainer/VBoxContainer/Start" to="MainMenu" method="_on_start_pressed"]

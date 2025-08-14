@@ -9,36 +9,42 @@ var total_enemies_in_wave: int = 0
 var enemies_alive: int = 0
 
 var wave_config := {
-	"base_total_enemies": 2,        # total enemies for wave 1
-	"enemies_increase_per_wave": 2, # add this many total enemies per wavee
+	"base_total_enemies": 2,        
+	"enemies_increase_per_wave": 2,
 	"base_spawn_delay": 2.5,
 	"min_spawn_delay": 1.5,
-	"delay_reduction_per_wave": 0.1,
+	"delay_reduction_per_wave": 0.2,
 	"spawners_per_wave": {
 		1: 2,
 		2: 2,
 		3: 2,
 		4: 3,
 		5: 3,
-		6: 4,
+		6: 3,
 		7: 4,
 		8: 4,
 		9: 5,
-		10: 5
+		10: 5,
+		11: 5,
+		12: 6,
+		13: 6,
+		14: 7,
 	}
 }
 
 var enemy_types := {
-	#"Squirrel": {"weight": 10, "min_wave": 1},
-	"Skunk": {"weight": 10, "min_wave": 1}
+	"Squirrel": {"weight": 10, "min_wave": 1},
+	"Skunk": {"weight": 6, "min_wave": 4}
 }
 
 func generate_wave_data(wave_number: int) -> Dictionary:
 	var wave_data = {}
-	var num_spawners = wave_config.spawners_per_wave.get(wave_number, 2)
+	var num_spawners = wave_config.spawners_per_wave.get(wave_number, 7)
 	
 	# calculate total enemies for this wave
-	var total_enemies = wave_config.base_total_enemies + (wave_number - 1) * wave_config.enemies_increase_per_wave
+	var total_enemies = wave_config.base_total_enemies + int(pow(wave_number, 1.5))
+	total_enemies = min(total_enemies, 200) # wave size cap
+
 	
 	# distribute enemies across spawners
 	var enemies_per_spawner = distribute_enemies_across_spawners(total_enemies, num_spawners)
@@ -50,21 +56,19 @@ func generate_wave_data(wave_number: int) -> Dictionary:
 	print("Wave %d: %d total enemies across %d spawners" % [wave_number, total_enemies, num_spawners])
 	return wave_data
 
+
 func distribute_enemies_across_spawners(total_enemies: int, num_spawners: int) -> Array:
-	var distribution = []
-	var base_per_spawner = total_enemies / num_spawners
+	var distribution: Array = []
+	var base_per_spawner = int(total_enemies / num_spawners)
 	var remainder = total_enemies % num_spawners
 	
-	# give each spawner the base amount
 	for i in range(num_spawners):
-		distribution.append(base_per_spawner)
+		distribution.append(int(base_per_spawner))
 	
-	# distribute the remainder randomly
 	for i in range(remainder):
 		var random_spawner = randi() % num_spawners
 		distribution[random_spawner] += 1
 	
-	# ensure minimum of 1 enemy per spawner (if total allows)
 	if total_enemies >= num_spawners:
 		for i in range(num_spawners):
 			if distribution[i] < 1:
@@ -72,9 +76,10 @@ func distribute_enemies_across_spawners(total_enemies: int, num_spawners: int) -
 	
 	return distribution
 
+
 func generate_spawner_enemies_with_count(wave_number: int, spawner_id: int, enemy_count: int) -> Array:
 	var enemies = []
-	var spawner_start_delay = (spawner_id - 1) * 2.0
+	var spawner_start_delay = (spawner_id - 1) * 1.5
 	var cumulative_delay = 1.0 + spawner_start_delay
 	
 	for i in range(enemy_count):
@@ -176,7 +181,8 @@ func pop_enemy_for_spawner(spawner_id: String) -> Dictionary:
 func enemy_killed():
 	enemies_alive -= 1
 	print("Enemy killed! Enemies remaining: %d" % enemies_alive)
-	if enemies_alive <= 0:
+	var enemies_left = get_tree().get_nodes_in_group("enemy")
+	if enemies_alive <= 0 && not enemies_alive:
 		print("=== WAVE %d ENDED ===" % current_wave)
 		emit_signal("wave_ended", current_wave)
 		var cycle_position = (current_wave - 1) % 5 + 1
@@ -184,7 +190,7 @@ func enemy_killed():
 		if cycle_position == 3:
 			SceneManager.change_gui_scene("res://GUI/UpgradeMenu/StatsUpgradeMenu.tscn")
 			get_tree().get_first_node_in_group("player").canMove = false
-		elif cycle_position == 5 && current_wave <= 30:
+		elif cycle_position == 5:
 			SceneManager.change_gui_scene("res://GUI/UpgradeMenu/UpgradeMenu.tscn")
 			get_tree().get_first_node_in_group("player").canMove = false
 		else:

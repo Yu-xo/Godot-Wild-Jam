@@ -15,6 +15,7 @@ var feeder_turret_spawned = false
 var rocket_spawned = false
 
 func take_dmg(amount: float):
+	AudioManager.play_sound("res://Level/Cage/cage_hit_sfx.wav")
 	if currhp - amount <= 0.0:
 		queue_free()
 		get_tree().reload_current_scene()

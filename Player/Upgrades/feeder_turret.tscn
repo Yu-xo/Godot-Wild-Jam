@@ -35,12 +35,12 @@ radius = 2.91804
 [node name="FeederTurret" type="Node3D"]
 script = ExtResource("1_f3h66")
 shooting_range = 60.0
-rotation_speed = 30.0
-fire_rate = 0.5
+fire_rate = 0.65
 bullet_scene = ExtResource("2_l2kdx")
 scrap_popup = ExtResource("3_n0lty")
-scrap_feed_rate = 0.035
-pellet_speed = 46.0
+scrap_feed_rate = 0.03
+pellet_speed = 10.0
+angle_step = 24.0
 
 [node name="mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(3.24497, 0, 0, 0, 0.195848, 0, 0, 0, 3.26004, 0, 0, 0)

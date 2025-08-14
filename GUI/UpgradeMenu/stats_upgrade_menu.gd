@@ -75,20 +75,20 @@ func _apply_upgrade(upgrade: Dictionary):
 				var cage = get_tree().get_first_node_in_group("base")
 				cage.currhp = min(cage.currhp + upgrade["value"], cage.maxhp)
 	else:
-		UpgradeState.add_upgrade(upgrade["name"])
+		UpgradeState.add_stat_upgrade(upgrade["name"])
 
 	UpgradeState.upgrade_counts[upgrade["name"]] = times_bought + 1
 
 		
 func _on_option_1_pressed():
-	UpgradeState.add_upgrade(option_1["name"] if option_1.has("name") else option_1["name"])
+	UpgradeState.add_stat_upgrade(option_1["name"] if option_1.has("name") else option_1["name"])
 	player.canMove = true
 	_apply_upgrade(option_1)
 	AudioManager.remove_low_pass_filter_from_music()
 	SceneManager.change_gui_scene("res://GUI/hud.tscn")
 
 func _on_option_2_pressed():
-	UpgradeState.add_upgrade(option_2["name"] if option_2.has("name") else option_2["name"])
+	UpgradeState.add_stat_upgrade(option_2["name"] if option_2.has("name") else option_2["name"])
 	player.canMove = true
 	_apply_upgrade(option_2)
 	AudioManager.remove_low_pass_filter_from_music()

@@ -1,10 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cu5qdkpkx5c7f"]
+[gd_scene load_steps=13 format=3 uid="uid://jqnarrmpxuh4"]
 
 [ext_resource type="Script" uid="uid://d1wt4ma6055l8" path="res://addons/dialogue_manager/example_balloon/example_balloon.gd" id="1_36de5"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
 [ext_resource type="Texture2D" uid="uid://b10656yjw1axl" path="res://GUI/textbox.png" id="2_nlsx6"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_72ixx"]
-[ext_resource type="FontFile" uid="uid://bdx23dyf5j8ib" path="res://GUI/Font/EagleLake-Regular.ttf" id="3_kmygl"]
+[ext_resource type="FontFile" uid="uid://5i314bvu7m6" path="res://GUI/Font/dpcomic.ttf" id="3_kmygl"]
 [ext_resource type="AudioStream" uid="uid://dnicvaf2cfthl" path="res://GUI/squeak_sfx.wav" id="5_1337t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
@@ -100,7 +100,7 @@ offset_right = 1201.0
 offset_bottom = 927.0
 size_flags_vertical = 10
 theme_override_fonts/normal_font = ExtResource("3_kmygl")
-theme_override_font_sizes/normal_font_size = 36
+theme_override_font_sizes/normal_font_size = 46
 text = "Dialogue..."
 
 [node name="PanelContainer" type="PanelContainer" parent="Balloon"]

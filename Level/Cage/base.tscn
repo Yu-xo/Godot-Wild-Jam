@@ -343,7 +343,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_c5htl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.94357, 1.46323, -1.6711)
 
 [node name="FeederSpawn" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.352, 0.3642, -4.00408)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0368284, 0.3642, -1.12908)
 
 [node name="RocketSpawn" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.352, 0.3642, -4.00408)

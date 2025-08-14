@@ -4,6 +4,7 @@ extends Node3D
 @export var lifetime = 5.0
 @export var projectile_sfx: String
 @export var volume = 100.0
+@export var spin_speed = 360.0
 var velocity = Vector3.ZERO
 var life_timer = 0.0
 
@@ -15,6 +16,7 @@ func _process(delta):
 	if velocity != Vector3.ZERO:
 		global_position += velocity * delta
 	life_timer -= delta
+	rotate_z(-deg_to_rad(spin_speed) * delta)
 	if life_timer <= 0:
 		queue_free()
 

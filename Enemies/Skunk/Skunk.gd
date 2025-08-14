@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+const SCRAP_POPUP = preload("res://Enemies/scrap_popup.tscn")
 const DAMAGE_POPUP_CRIT = preload("res://Enemies/damage_popup_crit.tscn")
 const DAMAGE_POPUP = preload("res://Enemies/damage_popup.tscn")
 @export var damage: float = 5.0
@@ -28,16 +29,24 @@ func take_dmg(amount):
 	
 	if randf() <= player.crit_chance:
 		is_crit = true
-		final_damage *= 1.5
+		final_damage *= 1.75
+
 	spawn_damage_popup(final_damage, is_crit)
 	AudioManager.play_sound("res://Enemies/test/enemyhit_sfx.wav", "SFX", 75.0)
-	if currhp - amount <= 0.0:
-		#TODO switch with death anim then queue free
+	
+	if currhp - final_damage <= 0.0:
 		WaveState.enemy_killed()
+		spawn_scrap(randi_range(3, 5))
 		queue_free()
-		player.scrap += randi_range(3, 5)
 	else:
-		currhp -= amount
+		currhp -= final_damage
+		
+func spawn_scrap(amount := 1):
+	for i in range(amount):
+		var scrap = SCRAP_POPUP.instantiate()
+		get_tree().current_scene.add_child(scrap)
+		scrap.global_transform.origin = global_transform.origin + Vector3(0, 2, 0)
+		scrap.global_translate(Vector3(randf_range(-3, 3), 0, randf_range(-3, 3)))
 
 func spawn_damage_popup(amount, crit_hit):
 	if crit_hit:

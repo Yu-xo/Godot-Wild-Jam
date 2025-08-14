@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dtdhqbpfvdn30"]
+[gd_scene load_steps=12 format=3 uid="uid://dtdhqbpfvdn30"]
 
 [ext_resource type="Script" uid="uid://cyj38k41moohn" path="res://GUI/UpgradeMenu/stats_upgrade_menu.gd" id="1_dxwpl"]
-[ext_resource type="FontFile" uid="uid://bdx23dyf5j8ib" path="res://GUI/Font/EagleLake-Regular.ttf" id="2_q0cg1"]
+[ext_resource type="Texture2D" uid="uid://byqsnc6y8gb5x" path="res://Enemies/scrap.png" id="3_4f32c"]
+[ext_resource type="FontFile" uid="uid://5i314bvu7m6" path="res://GUI/Font/dpcomic.ttf" id="4_bxehk"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbbyl"]
 
@@ -14,7 +15,9 @@ VBoxContainer/constants/separation = 4
 font_size = 71
 
 [sub_resource type="Theme" id="Theme_peb0c"]
-default_font = ExtResource("2_q0cg1")
+default_font = ExtResource("4_bxehk")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fa6if"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_15n47"]
 bg_color = Color(0.534374, 0, 0.124257, 1)
@@ -66,14 +69,14 @@ theme_override_constants/separation = 70
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("2_q0cg1")
+theme_override_fonts/font = ExtResource("4_bxehk")
 text = "Wave Completed!"
 label_settings = SubResource("LabelSettings_27lhk")
 horizontal_alignment = 1
 
 [node name="Skip" type="Button" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_q0cg1")
+theme_override_fonts/font = ExtResource("4_bxehk")
 text = "Skip To Next Wave"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
@@ -83,7 +86,7 @@ theme_override_constants/separation = 175
 alignment = 1
 
 [node name="Option1" type="Button" parent="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(400, 575)
+custom_minimum_size = Vector2(400, 386.795)
 layout_mode = 2
 theme = SubResource("Theme_peb0c")
 theme_override_constants/outline_size = 1
@@ -97,9 +100,48 @@ theme = SubResource("Theme_peb0c")
 text = "Upgrade2"
 autowrap_mode = 3
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="VSeparator2" type="VSeparator" parent="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 60
+theme_override_styles/separator = SubResource("StyleBoxEmpty_fa6if")
+
+[node name="TextureRect" type="TextureRect" parent="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(92.425, 119.925)
+layout_mode = 2
+texture = ExtResource("3_4f32c")
+expand_mode = 3
+
+[node name="Cost1" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_bxehk")
+theme_override_font_sizes/font_size = 106
+text = "35"
+
+[node name="VSeparator" type="VSeparator" parent="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 285
+theme_override_styles/separator = SubResource("StyleBoxEmpty_fa6if")
+
+[node name="TextureRect3" type="TextureRect" parent="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(92.425, 119.925)
+layout_mode = 2
+texture = ExtResource("3_4f32c")
+expand_mode = 3
+
+[node name="Cost2" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_bxehk")
+theme_override_font_sizes/font_size = 106
+text = "35"
+
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="HUD"]
+visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
